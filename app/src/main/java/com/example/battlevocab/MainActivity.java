@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+//import com.example.battlevocab.MainGame;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -22,22 +23,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayout l1, l2;
     private Button b1, b2;
     public int count;
-    public int []points;
+    MainGame mg;
+
+    public MainActivity() {
+        mg = new MainGame();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        word1=(EditText) findViewById(R.id.editText6);
-        word2=(EditText) findViewById(R.id.editText7);
-        t1=(TextView) findViewById(R.id.textView2);
-        t2=(TextView) findViewById(R.id.textView3);
-        l1=(LinearLayout) findViewById(R.id.linearLayout);
-        l2=(LinearLayout) findViewById(R.id.linearLayout3);
+       // word1=(EditText) findViewById(R.id.editText6);
+        //word2=(EditText) findViewById(R.id.editText7);
+       // l1=(LinearLayout) findViewById(R.id.linearLayout);
+        //l2=(LinearLayout) findViewById(R.id.linearLayout3);
         b1=(Button)findViewById(R.id.button3);
         b1.setOnClickListener(this);
         b2=(Button)findViewById(R.id.button4);
         b2.setOnClickListener(this);
-
+        
     }
     @Override
     public void onClick(View view)
@@ -45,28 +49,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(view == b1)
         {
             count=1;
-            processWord();
+            mg.processWord(count);
         }
         else if(view==b2)
         {
             count=2;
-            processWord();
+            mg.processWord(count);
         }
     }
 
-    private void processWord()
-    {
-        String w=new String();
-        if(count==1)
-        {
-            w=word1.getText().toString();
-            points[0]+=w.length();
-        }
-
-        else if(count==2)
-        {
-            w=word2.getText().toString();
-            points[1]+=w.length();
-        }
-    }
+    
 }
