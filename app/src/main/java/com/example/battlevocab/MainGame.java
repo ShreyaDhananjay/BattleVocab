@@ -4,31 +4,26 @@ import java.util.Random;
 
 public class MainGame
 {
-    public int []points;
+    public int []points=new int[2];
     public char randomLetterGen()
     {
-        String s="abcdefghijklmnopqrstuvwxyz";
-        Random r=new Random();
-        int n=s.length();
-        char c=s.charAt(r.nextInt(n));
-        return c;
+        String s = "abcdefghijklmnopqrstuvwxyz";
+        Random r = new Random();
+        int n = s.length();
+        return s.charAt(r.nextInt(n));
     }
 
-    public void processWord(int count)
+    public void processWord(int count, String w)
     {
-        String w=new String();
         if(count==1)
         {
-            w=word1.getText().toString();
             points[0]+=w.length();
         }
         else if(count==2)
         {
-            w=word2.getText().toString();
             points[1]+=w.length();
         }
     }
 }
 
 
-}

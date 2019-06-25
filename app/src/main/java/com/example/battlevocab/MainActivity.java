@@ -46,15 +46,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view)
     {
+        String w= new String();
         if(view == b1)
         {
             count=1;
-            mg.processWord(count);
+            w=word1.getText().toString();
+            mg.processWord(count,w);
         }
         else if(view==b2)
         {
             count=2;
-            mg.processWord(count);
+            w=word2.getText().toString();
+            mg.processWord(count,w);
         }
     }
 
