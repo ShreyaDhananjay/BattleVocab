@@ -1,10 +1,18 @@
 package com.example.myapplication;
 
+import java.io.IOException;
 import java.util.Random;
 
 public class MainGame
 {
     public int []points;
+    Dictionary d;
+
+    public MainGame()throws IOException
+    {
+        d=new Dictionary();
+    }
+
     public char randomLetterGen()
     {
         String s="abcdefghijklmnopqrstuvwxyz";
@@ -14,19 +22,32 @@ public class MainGame
         return c;
     }
 
-    public void processWord(int count, String w)
+    public boolean processWord(int []count, String w)
     {
-        if(count==1)
+        if(count[0]==1)
         {
-            points[0]+=w.length();
-            count++;
-
+            if(d.contains(w))
+            {
+                points[0] += w.length();
+                count[0]++;
+                return true;
+            }
+            else
+                return false;
         }
-        else if(count==2)
+        else if(count[0]==2)
         {
-            points[1]+=w.length();
-            count--;
+            if(d.contains(w))
+            {
+                points[1] += w.length();
+                count[0]--;
+                return true;
+            }
+            else
+                return false;
         }
+        else
+            return false;
     }
 }
 
