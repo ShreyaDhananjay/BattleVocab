@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ThirdActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -37,7 +37,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".50"
-            android:text="@string/done" />
+            android:background="#5A8673"
+            android:text="@string/done"
+            android:textSize="25sp"
+            tools:fontFamily="@font/fredoka_one"/>
 
         <EditText
             android:id="@+id/editText7"
@@ -58,7 +61,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".50"
-            android:text="@string/done" />
+            android:text="@string/done"
+            android:background="#D41C2C"
+            android:textSize="25sp"
+            tools:fontFamily="@font/fredoka_one"/>
     </LinearLayout>
 
     <LinearLayout

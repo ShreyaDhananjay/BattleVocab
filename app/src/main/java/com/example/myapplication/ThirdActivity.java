@@ -1,7 +1,9 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,19 +26,21 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     private TextView t1, t2;
     private LinearLayout l1, l2;
     private Button b1, b2;
-    public int [] count=new int[1];
+    String res;
+    public int [] count=new int[1];//so it's a reference variable that automatically gets updated
     MainGame mg;
-//    Dictionary d;
+    Winner win;
     SecondActivity sa;
 
     public ThirdActivity() throws IOException {
         mg = new MainGame();
         sa=new SecondActivity();
-    //    d=new Dictionary();
+        win=new Winner();
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
         word1 = (EditText) findViewById(R.id.editText6);
@@ -47,6 +51,10 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         b1.setOnClickListener(this);
         b2 = (Button) findViewById(R.id.button4);
         b2.setOnClickListener(this);
+        setContentView(R.layout.activity_main);
+
+
+        //set text w/ names of players
         String s1=sa.s[0];
         t1.setText(s1);
         s1=sa.s[1];
@@ -61,24 +69,28 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         {
             count[0] = 1;
             w = word1.getText().toString();
+
             if (w.length() == 0)
             {
                 word1.requestFocus();
                 word1.setError("Enter a word");
             }
-            /*else if (!w.matches("[a-zA-Z ]+"))
-            {
-                word1.requestFocus();
-                word1.setError("Enter only alphabetical characters");
-            }*/
+
             else if(!mg.processWord(count,w))
             {
                 word1.requestFocus();
                 word1.setError("Invalid Word");
             }
-            //else
+
+            //fetch name of winner
+            res=win.checkWinner(mg.points[0], sa.pts, 1);
+
+            //if person has won
+            if(res!=null)
+                startActivity(new Intent(this, FourthActivity.class));
 
         }
+
         else if (view == b2)
         {
             count[0] = 2;
@@ -88,18 +100,20 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
                 word2.requestFocus();
                 word2.setError("Enter a word");
             }
-            /*else if (!w.matches("[a-zA-Z ]+"))
-            {
-                word2.requestFocus();
-                word2.setError("Enter only alphabetical characters");
-            }*/
+
             else if(!mg.processWord(count,w))
             {
                 word2.requestFocus();
                 word2.setError("Invalid word!");
             }
-            //else
-              //  mg.processWord(count, w);
+
+            //fetch name of winner
+            res=win.checkWinner(mg.points[0], sa.pts, 2);
+
+            //if person has won
+            if(res!=null)
+                startActivity(new Intent(this, FourthActivity.class));
+
         }
     }
 }

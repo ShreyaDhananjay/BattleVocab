@@ -103,4 +103,8 @@
     <string name="maxpt">Maximum points</string>
     <string name="single">Single Player</string>
     <string name="pass">Pass and Play</string>
+    <string name="congr">CONGRATULATIONS!!</string>
+    <string name="winner">Winner</string>
+    <string name="play_again">PLAY AGAIN</string>
+    <string name="go">GO!</string>
 </resources>
