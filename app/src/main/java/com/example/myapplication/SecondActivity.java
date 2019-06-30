@@ -57,7 +57,7 @@ public class SecondActivity extends AppCompatActivity {
         pts=Integer.parseInt(s[2]);//max points
         s[3]=null;
         c=mainGame.randomLetterGen();
-        final String disp=s[0]+"will start the game. Make the first word with the letter ' "+c+" ' ";
+        final String disp=s[0]+"will start the game. Make the first word with the letter ' "+c+" '\nYour time starts now! ";
         linearLayout = (LinearLayout) findViewById(R.id.linearLayout1);//of popup.xml
 
         b1.setOnClickListener(new View.OnClickListener()

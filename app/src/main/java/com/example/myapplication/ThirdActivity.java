@@ -31,11 +31,13 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     MainGame mg;
     Winner win;
     SecondActivity sa;
+    TimerClass ta;
 
     public ThirdActivity() throws IOException {
         mg = new MainGame();
         sa=new SecondActivity();
         win=new Winner();
+        ta=new TimerClass();
     }
 
     @Override
@@ -59,7 +61,11 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         t1.setText(s1);
         s1=sa.s[1];
         t2.setText(s1);
-    }
+
+        ta.start();//start timer
+
+
+    }//end of onCreate
 
     @Override
     public void onClick(View view)
@@ -70,17 +76,6 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
             count[0] = 1;
             w = word1.getText().toString();
 
-            if (w.length() == 0)
-            {
-                word1.requestFocus();
-                word1.setError("Enter a word");
-            }
-
-            else if(!mg.processWord(count,w))
-            {
-                word1.requestFocus();
-                word1.setError("Invalid Word");
-            }
 
             //fetch name of winner
             res=win.checkWinner(mg.points[0], sa.pts, 1);
@@ -95,17 +90,6 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         {
             count[0] = 2;
             w = word2.getText().toString();
-            if (w.length() == 0)
-            {
-                word2.requestFocus();
-                word2.setError("Enter a word");
-            }
-
-            else if(!mg.processWord(count,w))
-            {
-                word2.requestFocus();
-                word2.setError("Invalid word!");
-            }
 
             //fetch name of winner
             res=win.checkWinner(mg.points[0], sa.pts, 2);

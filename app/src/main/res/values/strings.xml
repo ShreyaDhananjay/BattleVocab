@@ -107,4 +107,5 @@
     <string name="winner">Winner</string>
     <string name="play_again">PLAY AGAIN</string>
     <string name="go">GO!</string>
+    <string name="_0_points">0 POINTS</string>
 </resources>
