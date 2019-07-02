@@ -9,10 +9,12 @@ public class MainGame
     public int []points;
     public ArrayList <String> list=new ArrayList<String>();
     Dictionary d;
+    ThirdActivity ta1;
 
     public MainGame()throws IOException
     {
         d=new Dictionary();
+        ta1=new ThirdActivity();
     }
 
     public char randomLetterGen()
@@ -26,44 +28,66 @@ public class MainGame
 
     public void processWord(int []count, String w)
     {
-        int index;
-        if(count[0]==1)
+        int index,list_size, prev_length;
+        String prev;
+        boolean flag=false;
+        if(d.contains(w))//a valid dictionary word
         {
-            if(d.contains(w))
+            list_size = list.size();
+            index = list.indexOf(w);
+            prev = list.get(list_size - 1);
+            prev_length = prev.length();
+            if (w.charAt(0) == prev.charAt(prev_length - 1))//if last letter of previous word is the starting letter of next word//
             {
-                points[0] += w.length();
-                index=list.indexOf(w);
-                if(index!=-1)
-                 list.add(w);
-                else
+                if (index == -1)//new word entered
+                {
+                    list.add(w);
+                    flag = true;//no error
 
+                    if(count[0]==1)
+                    {
+                        points[0]+=w.length();
+                        ta1.setPoints(1, points[0]);
+                    }
+
+                    else
+                    {
+                        points[1]+=w.length();
+                        ta1.setPoints(2, points[1]);
+                    }
+                }
+
+                else//word starts w/ correct letter but has already been entered
+                    errorMessage(1);
+            }
+
+            else//word starts w/ wrong letter
+                errorMessage(2);
+
+        }//end of outermost if
+
+        else//not a valid word
+            errorMessage(3);
+
+        if(flag)
+        {
+            if(count[0]==1)
                 count[0]++;
-
-            }
-
-
-        }
-        else if(count[0]==2)
-        {
-            if(d.contains(w))
-            {
-                points[1] += w.length();
-                list.add(w);
+            else
                 count[0]--;
-
-            }
-
         }
+
     }//end of processWord
 
-    public void errorMessage(int code, int pt)
+    public void errorMessage(int code)
     {
         String err;
         switch(code)
         {
-            case 1: err="Enter a valid word"; break;
-            case 2: err="Word already played! Enter another one"; break;
-            case 3: err="Time's up!"; break;
+            case 1: err="Word already played! Enter another one"; break;
+            case 2: err="The word must start with the last letter of the previous word"; break;
+            case 3: err="The word does not belong in the dictionary"; break;
+            case 4: err="Time's up!"; break;
             //default: err="You get "+ pt+" points";
         }
 

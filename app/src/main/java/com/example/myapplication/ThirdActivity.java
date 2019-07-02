@@ -23,7 +23,7 @@ import java.io.IOException;
 public class ThirdActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText word1, word2;
-    private TextView t1, t2;
+    private TextView t1, t2, t3, t4;
     private LinearLayout l1, l2;
     private Button b1, b2;
     String res;
@@ -31,13 +31,13 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     MainGame mg;
     Winner win;
     SecondActivity sa;
-    TimerClass ta;
+    TimerClass tc;
 
     public ThirdActivity() throws IOException {
         mg = new MainGame();
         sa=new SecondActivity();
         win=new Winner();
-        ta=new TimerClass();
+        tc=new TimerClass();
     }
 
     @Override
@@ -49,6 +49,8 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         word2 = (EditText) findViewById(R.id.editText7);
         t1= (TextView) findViewById(R.id.textView2);
         t2= (TextView) findViewById(R.id.textView3);
+        t3= (TextView) findViewById(R.id.textView4);
+        t4= (TextView) findViewById(R.id.textView7);
         b1 = (Button) findViewById(R.id.button3);
         b1.setOnClickListener(this);
         b2 = (Button) findViewById(R.id.button4);
@@ -62,7 +64,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         s1=sa.s[1];
         t2.setText(s1);
 
-        ta.start();//start timer
+        tc.start();//start timer
 
 
     }//end of onCreate
@@ -75,9 +77,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         {
             count[0] = 1;
             w = word1.getText().toString();
-
-
-            //fetch name of winner
+           //fetch name of winner
             res=win.checkWinner(mg.points[0], sa.pts, 1);
 
             //if person has won
@@ -98,6 +98,22 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
             if(res!=null)
                 startActivity(new Intent(this, FourthActivity.class));
 
+        }
+    }
+
+    public void setPoints(int check, int pts)
+    {
+        String dispmsg;
+        if(check==1)
+        {
+            dispmsg=pts+" POINTS";
+            t3.setText(dispmsg);
+        }
+
+        else
+        {
+            dispmsg=pts+" POINTS";
+            t4.setText(dispmsg);
         }
     }
 }

@@ -1,10 +1,12 @@
 package com.example.myapplication;
 
+import java.io.IOException;
+
 public class Winner
 {
     SecondActivity sa;
 
-    public Winner() {
+    public Winner() throws IOException {
         sa = new SecondActivity();
     }
 
