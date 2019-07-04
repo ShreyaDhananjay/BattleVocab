@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.annotation.TargetApi;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
@@ -14,19 +15,16 @@ import java.util.Set;
 
 public class Dictionary
 {
-    private Set<String> wordsSet;
+    public Set<String> wordsSet;
 
+    @TargetApi(Build.VERSION_CODES.O)
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public Dictionary() throws IOException
     {
-        Path path = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            path = Paths.get("wordlist.txt");
-        }
-        byte[] readBytes = new byte[0];
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            readBytes = Files.readAllBytes(path);
-        }
+        Path path = Paths.get("wordlist.txt");
+
+        byte[] readBytes = Files.readAllBytes(path);
+
         String wordListContents = new String(readBytes, StandardCharsets.UTF_8);
         String[] words = wordListContents.split("\n");
         wordsSet = new HashSet<>();

@@ -98,7 +98,14 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
             if(res!=null)
                 startActivity(new Intent(this, FourthActivity.class));
 
+
         }
+    }
+
+    public void dispError(String e, boolean flag)
+    {
+        if(flag)
+            Toast.makeText(getApplicationContext(), e,Toast.LENGTH_SHORT ).show();
     }
 
     public void setPoints(int check, int pts)

@@ -28,10 +28,18 @@ public class TimerClass
     };
 
 
-    public void start() {
+    public void start()
+    {
         secondspassed = 0;
         timer.scheduleAtFixedRate(task, 1000, 1000);
     }
+
+
+    public void stop()
+    {
+        task.cancel();
+    }
+
 }//end of class
 
 

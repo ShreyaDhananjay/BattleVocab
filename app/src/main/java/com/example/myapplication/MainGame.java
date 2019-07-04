@@ -10,11 +10,14 @@ public class MainGame
     public ArrayList <String> list=new ArrayList<String>();
     Dictionary d;
     ThirdActivity ta1;
+    TimerClass tc;
+    boolean flag=false;
 
     public MainGame()throws IOException
     {
         d=new Dictionary();
         ta1=new ThirdActivity();
+        tc=new TimerClass();
     }
 
     public char randomLetterGen()
@@ -71,6 +74,7 @@ public class MainGame
 
         if(flag)
         {
+            stopTimer(flag);
             if(count[0]==1)
                 count[0]++;
             else
@@ -81,16 +85,23 @@ public class MainGame
 
     public void errorMessage(int code)
     {
-        String err;
+        String err="";
+        boolean flag=false;
         switch(code)
         {
-            case 1: err="Word already played! Enter another one"; break;
-            case 2: err="The word must start with the last letter of the previous word"; break;
-            case 3: err="The word does not belong in the dictionary"; break;
-            case 4: err="Time's up!"; break;
+            case 1: err="Word already played! Enter another one"; flag=true; break;
+            case 2: err="The word must start with the last letter of the previous word"; flag=true; break;
+            case 3: err="The word does not belong in the dictionary";flag=true; break;
+            case 4: err="Time's up!";flag=true; break;
             //default: err="You get "+ pt+" points";
         }
+        ta1.dispError(err,flag);
+    }
 
+    public void stopTimer(boolean flag)
+    {
+        if(flag)
+            tc.stop();//stop timer
     }
 }//end of class
 
