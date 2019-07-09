@@ -6,35 +6,28 @@ import java.util.Random;
 
 public class MainGame
 {
-    public int []points;
+    //public int []points=new int[2];
     public ArrayList <String> list=new ArrayList<String>();
-    Dictionary d;
-    ThirdActivity ta1;
-    TimerClass tc;
+   // Dictionary d;
+   // ThirdActivity ta1;
+    //TimerClass tc;
     boolean flag=false;
 
     public MainGame()throws IOException
     {
-        d=new Dictionary();
-        ta1=new ThirdActivity();
-        tc=new TimerClass();
+        //d=new Dictionary();
+       // ta1=new ThirdActivity();
+      //  tc=new TimerClass();
     }
 
-    public char randomLetterGen()
-    {
-        String s="abcdefghijklmnopqrstuvwxyz";
-        Random r=new Random();
-        int n=s.length();
-        char c=s.charAt(r.nextInt(n));
-        return c;
-    }
 
-    public void processWord(int []count, String w)
+
+    public void processWord(int []count, String w, int []points)
     {
         int index,list_size, prev_length;
         String prev;
         boolean flag=false;
-        if(d.contains(w))//a valid dictionary word
+        /*if(d.contain(w))//a valid dictionary word
         {
             list_size = list.size();
             index = list.indexOf(w);
@@ -50,13 +43,13 @@ public class MainGame
                     if(count[0]==1)
                     {
                         points[0]+=w.length();
-                        ta1.setPoints(1, points[0]);
+                        //setPoints(1, points[0]);
                     }
 
                     else
                     {
                         points[1]+=w.length();
-                        ta1.setPoints(2, points[1]);
+                        //ta1.setPoints(2, points[1]);
                     }
                 }
 
@@ -80,7 +73,7 @@ public class MainGame
             else
                 count[0]--;
         }
-
+*/
     }//end of processWord
 
     public void errorMessage(int code)
@@ -95,14 +88,14 @@ public class MainGame
             case 4: err="Time's up!";flag=true; break;
             //default: err="You get "+ pt+" points";
         }
-        ta1.dispError(err,flag);
+        //ta1.dispError(err,flag);
     }
 
-    public void stopTimer(boolean flag)
+   /* public void stopTimer(boolean flag)
     {
         if(flag)
             tc.stop();//stop timer
-    }
+    }*/
 }//end of class
 
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1CB38B"
-    tools:context=".SecondActivity">
+    tools:context="com.example.myapplication.SecondActivity">
 
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_width="178dp"
         android:layout_height="0dp"
         android:layout_marginTop="61dp"
-        android:layout_marginBottom="47dp"
+        android:layout_marginBottom="46dp"
         android:text="@string/player1"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -25,15 +25,15 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:fontFamily="@font/fredoka_one" />
 
+
     <EditText
         android:id="@+id/editText9"
-        android:layout_width="209dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="77dp"
-        android:layout_marginBottom="76dp"
+        android:layout_width="187dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="69dp"
+        android:layout_marginBottom="78dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/entername"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/editText10"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,12 +59,12 @@
 
     <EditText
         android:id="@+id/editText10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="83dp"
+        android:layout_width="183dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="84dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/entername"
+        android:text=""
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/editText11"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,52 +74,48 @@
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="0dp"
+        android:layout_width="178dp"
         android:layout_height="0dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginRight="9dp"
-        android:layout_marginBottom="215dp"
+        android:layout_marginBottom="40dp"
         android:text="@string/maxpt"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button5"
         app:layout_constraintEnd_toStartOf="@+id/editText11"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
         tools:fontFamily="@font/fredoka_one" />
 
     <EditText
         android:id="@+id/editText11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="120dp"
+        android:layout_width="176dp"
+        android:layout_height="61dp"
+        android:layout_marginBottom="231dp"
         android:ems="10"
         android:inputType="number"
-        android:text="@string/enterval"
+        android:text=""
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/editText10" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="148dp"
-        android:layout_height="73dp"
-        android:layout_marginBottom="40dp"
-        android:text="@string/done"
-        tools:fontFamily="@font/fredoka_one"
-        android:textSize="25sp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="102dp"
         android:background="#CC1C2C"
+        android:text="@string/done"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText11" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        tools:fontFamily="@font/fredoka_one" />
+
 </android.support.constraint.ConstraintLayout>

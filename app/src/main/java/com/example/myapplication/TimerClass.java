@@ -5,12 +5,12 @@ import java.util.TimerTask;
 
 public class TimerClass
 {
-    MainGame m;
+    //MainGame m;
     int secondspassed;
 
     public TimerClass()throws IOException
     {
-        m = new MainGame();
+        //m = new MainGame();
     }
 
     Timer timer = new Timer();
@@ -19,7 +19,7 @@ public class TimerClass
             secondspassed++;
             if (secondspassed == 20)
             {
-                m.errorMessage(4);
+                //m.errorMessage(4);
                 //System.out.println("Time's up!");
                 cancel();
                 //start();

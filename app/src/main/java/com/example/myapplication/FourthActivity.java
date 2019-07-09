@@ -7,27 +7,30 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 
 public class FourthActivity extends AppCompatActivity implements OnClickListener
 {
     private TextView t;
-    ThirdActivity ta;
+   // ThirdActivity ta;
     Button b1, b2;
 
-    public FourthActivity() throws IOException {
+    /*public FourthActivity() throws IOException {
         ta = new ThirdActivity();
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fourth);
         t=(TextView)findViewById(R.id.textView6);
-        t.setText(ta.res);
+        //t.setText(ta.res);
         b1=(Button)findViewById(R.id.button6);
+        b1.setOnClickListener(this);
         b2=(Button) findViewById(R.id.button7);
+        b2.setOnClickListener(this);
     }
 
     @Override
@@ -38,5 +41,6 @@ public class FourthActivity extends AppCompatActivity implements OnClickListener
         else if(view==b2)
             startActivity(new Intent(this, MainActivity.class));
     }
+
 
 }
