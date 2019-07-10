@@ -1,4 +1,4 @@
-package com.example.myapplication;
+/*package com.example.myapplication;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -34,7 +34,7 @@ public class Dictionary  {
     {
 
           /*
-            Path path = Paths.get("wordlist.txt");
+            Path path = Paths.get("wordlist3.txt");
 
             byte[] readBytes = Files.readAllBytes(path);
 
@@ -42,11 +42,11 @@ public class Dictionary  {
             String[] words = wordListContents.split("\n");
             wordsSet = new HashSet<>();
             Collections.addAll(wordsSet, words);*/
-        }
+     //   }
 
 
-    public void readWordList(AssetManager assetManager)throws IOException
-    {
+   // public void readWordList(AssetManager assetManager)throws IOException
+    //{
         /*
         try
         {
@@ -67,7 +67,7 @@ public class Dictionary  {
             System.out.println("error");
         }*/
 
-        try
+  /*      try
         {
             String filename="C://Users//Shreya//Documents//BattleVocab-master//app//src//main//java//com//example//myapplication//wordlist.txt";
             InputStream inputStream=assetManager.open(filename);
@@ -92,3 +92,4 @@ public class Dictionary  {
         //return wordsSet.contains(word);
     }
 }
+*/

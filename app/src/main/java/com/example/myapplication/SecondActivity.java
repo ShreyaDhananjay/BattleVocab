@@ -94,7 +94,6 @@ public class SecondActivity extends AppCompatActivity {
     {
         Intent intent=new Intent(this,ThirdActivity.class);
         Bundle bundle=new Bundle();
-
         bundle.putStringArray("user_data", s);
         bundle.putChar("starting char", c);
         intent.putExtras(bundle);

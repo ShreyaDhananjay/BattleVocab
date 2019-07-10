@@ -15,8 +15,8 @@ public class FourthActivity extends AppCompatActivity implements OnClickListener
 {
     private TextView t;
    // ThirdActivity ta;
-    Button b1, b2;
-
+    Button b1, b2, b3;
+    String win="";
     /*public FourthActivity() throws IOException {
         ta = new ThirdActivity();
     }*/
@@ -31,6 +31,13 @@ public class FourthActivity extends AppCompatActivity implements OnClickListener
         b1.setOnClickListener(this);
         b2=(Button) findViewById(R.id.button7);
         b2.setOnClickListener(this);
+        //b3=(Button)findViewById(R.id.button2);
+        //b3.setOnClickListener(this);
+        Bundle bundle=getIntent().getExtras();
+        assert bundle != null;
+        win=bundle.getString("winner");
+        set();
+        //updateTextView();
     }
 
     @Override
@@ -40,7 +47,24 @@ public class FourthActivity extends AppCompatActivity implements OnClickListener
             startActivity(new Intent(this, SecondActivity.class));
         else if(view==b2)
             startActivity(new Intent(this, MainActivity.class));
+        /*else if(view==b3)
+        {
+            t.setText(win);
+        }*/
     }
+    private void updateTextView() {
+        FourthActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                TextView tv= (TextView) findViewById(R.id.textView6);
+                tv.setText(win);
+            }
+        });
 
+    }
+    public void set()
+    {
+        t.setText(win);
+    }
 
 }

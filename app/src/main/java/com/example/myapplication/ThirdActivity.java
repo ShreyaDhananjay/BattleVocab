@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class ThirdActivity extends AppCompatActivity {
@@ -36,24 +38,22 @@ public class ThirdActivity extends AppCompatActivity {
     private Button b1, b2;
     public ArrayList<String> word_list=new ArrayList<String>();
     public ArrayList <String> list=new ArrayList<String>();
-    int res, maxpts=50, counter=0;
+    int res, maxpts=50, counter=0, secondspassed;
     int [] points=new int[2];
     public int [] count=new int[1];//so it's a reference variable that automatically gets updated
     char c;
-    String s1="",s2="", disp="";
+    String s1="",s2="", disp="", winnername;
     String []data=new String[3];
-   // MainGame mg;
     Winner win;
-    //SecondActivity sa;
-    TimerClass tc;
-    //Dictionary d;
+    //TimerClass tc;
+
 
     public ThirdActivity() throws IOException {
       //  mg = new MainGame();
        // sa=new SecondActivity();
         win=new Winner();
-        tc=new TimerClass();
-        //d=new Dictionary();
+      //  tc=new TimerClass();
+
     }
 
 
@@ -81,7 +81,8 @@ public class ThirdActivity extends AppCompatActivity {
         s2=data[1];
         if(!data[2].equals(""))
             maxpts=Integer.parseInt(data[2]);//max points
-
+        updateTextView(s1, 1);
+        updateTextView(s2,2);
         System.out.println("Max pts: "+maxpts+"start char: "+c);
 
         AssetManager assetManager=getAssets();
@@ -104,19 +105,19 @@ public class ThirdActivity extends AppCompatActivity {
             e.printStackTrace();
             System.out.println("ERROR LOADING DICTIONARY");
         }
-        /*tc.start();//start timer
-        */
+        //start();//start timer
+
 
     }//end of onCreate
 
     public boolean contain(String word)
     {
-        return (java.util.Collections.binarySearch(word_list, word) > 0);
+        return (java.util.Collections.binarySearch(word_list, word) >= 0);
         //return wordsSet.contains(word);
     }
 
 
-    public void processWord(int []count, String w, int []points)
+    public void processWord(String w)
     {
         int index,list_size, prev_length;
         String prev;
@@ -197,7 +198,7 @@ public class ThirdActivity extends AppCompatActivity {
 
         if(flag)
         {
-            stopTimer(flag);
+            //stopTimer(flag);
             if(count[0]==1)
                 count[0]++;
             else
@@ -237,11 +238,11 @@ public class ThirdActivity extends AppCompatActivity {
 
     }
 
-    public void stopTimer(boolean flag)
+  /*  public void stopTimer(boolean flag)
     {
         if(flag)
-            tc.stop();//stop timer
-    }
+            stop();//stop timer
+    }*/
 
     private View.OnClickListener vocl1 = new View.OnClickListener()
     {
@@ -255,7 +256,7 @@ public class ThirdActivity extends AppCompatActivity {
             counter++;
             w = word1.getText().toString();
             System.out.println(w);
-            processWord(count, w, points);
+            processWord(w);
             word2.setText("");
             setPoints();
             //fetch name of winner
@@ -281,7 +282,7 @@ public class ThirdActivity extends AppCompatActivity {
             count[0] = 2;
             counter++;
             w = word2.getText().toString();
-            processWord(count, w, points);
+            processWord(w);
             word1.setText("");
             setPoints();
             //fetch name of winner
@@ -297,6 +298,13 @@ public class ThirdActivity extends AppCompatActivity {
     public void goToFourthActivity()
     {
         Intent intent=new Intent(this, FourthActivity.class);
+        if(res==1)
+            winnername=s1;
+        else
+            winnername=s2;
+        Bundle b=new Bundle();
+        b.putString("winner", winnername);
+        intent.putExtras(b);
         startActivity(intent);
     }
 
@@ -315,14 +323,60 @@ public class ThirdActivity extends AppCompatActivity {
         if(count[0]==1)
         {
             dispmsg1=String.valueOf(points[0])+" POINTS";
-            t3.setText(dispmsg1);
+            //t3.setText(dispmsg1);
+            updateTextView(dispmsg1, 3);
         }
 
         else if(count[0]==2)
         {
             dispmsg2=String.valueOf(points[1])+" POINTS";
-            t4.setText(dispmsg2);
-
+            //t4.setText(dispmsg2);
+            updateTextView(dispmsg2, 4);
         }
+    }
+    /*
+    Timer timer = new Timer();
+    TimerTask task = new TimerTask() {
+        public void run() {
+            secondspassed++;
+            if (secondspassed == 20)
+            {
+                errorMessage(4);
+                System.out.println("Time's up!");
+                cancel();
+                //start();
+            }
+        }
+    };
+
+
+    public void start()
+    {
+        secondspassed = 0;
+        timer.scheduleAtFixedRate(task, 1000, 1000);
+    }
+
+
+    public void stop()
+    {
+        task.cancel();
+    }
+*/
+
+    private void updateTextView(final String s, final int code) {
+        ThirdActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if(code==1)
+                    t1.setText(s);
+                else if(code==2)
+                    t2.setText(s);
+                else if(code==3)
+                    t3.setText(s);
+                else if(code==4)
+                    t4.setText(s);
+            }
+        });
+
     }
 }

@@ -1,7 +1,10 @@
 package com.example.myapplication;
+import android.widget.Toast;
+
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
+
 
 public class TimerClass
 {
@@ -20,7 +23,7 @@ public class TimerClass
             if (secondspassed == 20)
             {
                 //m.errorMessage(4);
-                //System.out.println("Time's up!");
+                System.out.println("Time's up!");
                 cancel();
                 //start();
             }

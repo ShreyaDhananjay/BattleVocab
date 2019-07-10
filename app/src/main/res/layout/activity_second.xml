@@ -23,7 +23,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:fontFamily="@font/fredoka_one" />
+        app:fontFamily="@font/fredoka_one" />
 
 
     <EditText
@@ -35,6 +35,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:textAlignment="center"
+        android:hint="@string/entername"
         app:layout_constraintBottom_toTopOf="@+id/editText10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -55,7 +56,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8"
-        tools:fontFamily="@font/fredoka_one" />
+        app:fontFamily="@font/fredoka_one" />
 
     <EditText
         android:id="@+id/editText10"
@@ -65,6 +66,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text=""
+        android:hint="@string/entername"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/editText11"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +89,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
-        tools:fontFamily="@font/fredoka_one" />
+        app:fontFamily="@font/fredoka_one" />
 
     <EditText
         android:id="@+id/editText11"
@@ -97,6 +99,7 @@
         android:ems="10"
         android:inputType="number"
         android:text=""
+        android:hint="@string/enterval"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,6 +119,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10"
-        tools:fontFamily="@font/fredoka_one" />
+        app:fontFamily="@font/fredoka_one" />
 
 </android.support.constraint.ConstraintLayout>

@@ -7,78 +7,79 @@
     android:background="#1CB38B"
     tools:context="com.example.myapplication.FourthActivity">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="190dp"
-        android:layout_height="135dp"
-        android:layout_marginEnd="59dp"
-        android:layout_marginBottom="51dp"
-        android:adjustViewBounds="false"
-        app:layout_constraintBottom_toTopOf="@+id/button6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.679"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:srcCompat="@drawable/ninja" />
-
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="324dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="41dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="39dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginBottom="15dp"
         android:text="@string/congr"
         android:textAlignment="center"
-        android:textSize="30sp"
+        android:textSize="25sp"
+        app:fontFamily="@font/fredoka_one"
         app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:fontFamily="@font/fredoka_one" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="324dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginBottom="61dp"
         android:text="@string/winner"
         android:textAlignment="center"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:fontFamily="@font/fredoka_one"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        tools:fontFamily="@font/fredoka_one" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <Button
         android:id="@+id/button6"
-        android:layout_width="152dp"
-        android:layout_height="79dp"
-        android:layout_marginBottom="40dp"
-        android:text="@string/play_again"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginEnd="30dp"
         android:background="#CC1C2C"
-        tools:fontFamily="@font/fredoka_one"
+        android:text="@string/play_again"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:fontFamily="@font/fredoka_one"
+        app:layout_constraintBottom_toBottomOf="@+id/button7"
         app:layout_constraintEnd_toStartOf="@+id/button7"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toTopOf="@+id/button7" />
 
     <Button
         android:id="@+id/button7"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="@string/title_home"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="52dp"
         android:background="#CC1C2C"
-        tools:fontFamily="@font/fredoka_one"
+        android:text="@string/title_home"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/button6"
+        app:fontFamily="@font/fredoka_one"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button6"
-        app:layout_constraintTop_toTopOf="@+id/button6" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="173dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="95dp"
+        app:layout_constraintBottom_toTopOf="@+id/button7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:srcCompat="@drawable/ninja" />
 
 </android.support.constraint.ConstraintLayout>
 

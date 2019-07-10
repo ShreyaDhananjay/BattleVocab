@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private TextView mTextMessage;
-    private Button b1;
+    private Button b1, b;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -37,8 +37,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         BottomNavigationView navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        b1 = (Button) findViewById(R.id.button4);
+        b1 = (Button) findViewById(R.id.button1);
         b1.setOnClickListener(this);
+        b=(Button)findViewById(R.id.button);
+        b.setOnClickListener(this);
     }
 
     private void goToSecondActivity() {
@@ -46,10 +48,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
 
+    private void goToFifthActivity()
+    {
+        Intent intent = new Intent(this, FifthActivity.class);
+        startActivity(intent);
+
+    }
 
     @Override
     public void onClick(View v) {
         if(v==b1)
             goToSecondActivity();
+        else if(v==b)
+            goToFifthActivity();
     }
 }
