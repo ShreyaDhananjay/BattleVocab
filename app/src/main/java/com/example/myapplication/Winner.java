@@ -4,11 +4,6 @@ import java.io.IOException;
 
 public class Winner
 {
-    /*SecondActivity sa;
-
-    public Winner() throws IOException {
-        sa = new SecondActivity();
-    }*/
 
     public int checkWinner(int points, int max, int count)
     {

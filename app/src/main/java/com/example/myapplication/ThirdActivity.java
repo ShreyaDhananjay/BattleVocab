@@ -105,7 +105,7 @@ public class ThirdActivity extends AppCompatActivity {
             e.printStackTrace();
             System.out.println("ERROR LOADING DICTIONARY");
         }
-        //start();//start timer
+        start();//start timer
 
 
     }//end of onCreate
@@ -125,7 +125,7 @@ public class ThirdActivity extends AppCompatActivity {
         String s=w.toUpperCase();
         if(contain(s))//a valid dictionary word
         {
-            if(!(counter==1))
+            if(counter>1)//not the first time
             {
                 //System.out.println(counter);
                 list_size = list.size();
@@ -143,16 +143,18 @@ public class ThirdActivity extends AppCompatActivity {
 
                         if(count[0]==1)
                         {
-                            disp=s1+" gets "+String.valueOf(s.length())+ " points";
-                            noError(disp);
+                            //disp=s1+" gets "+String.valueOf(s.length())+ " points";
+                            //noError(disp);
                             points[0]+=s.length();
+                            stopTimer(flag);
                         }
 
                         else
                          {
-                             disp=s2+" gets "+String.valueOf(s.length())+ " points";
-                             noError(disp);
+                             //disp=s2+" gets "+String.valueOf(s.length())+ " points";
+                             //noError(disp);
                              points[1]+=s.length();
+                             stopTimer(flag);
                          }
                     }
 
@@ -174,15 +176,17 @@ public class ThirdActivity extends AppCompatActivity {
 
                     if (count[0] == 1)
                     {
-                        disp = s1 + " gets " + String.valueOf(s.length()) + " points";
-                        noError(disp);
+                        //disp = s1 + " gets " + String.valueOf(s.length()) + " points";
+                        //noError(disp);
                         points[0] += s.length();
+                        stopTimer(true);
                     }
                     else if (count[0] == 2)
                     {
-                        disp = s2 + " gets " + String.valueOf(s.length()) + " points";
-                        noError(disp);
+                        //disp = s2 + " gets " + String.valueOf(s.length()) + " points";
+                        //noError(disp);
                         points[1] += s.length();
+                        stopTimer(true);
                     }
                 }
 
@@ -227,9 +231,9 @@ public class ThirdActivity extends AppCompatActivity {
                 flag = true;
                 break;
             case 4:
-                err = "Time's up!";
+                err = "Time's up!\nYour turn has passed";
                 counter--;
-                flag = true;
+                dispTimerMessage(err);
                 break;
             //default: err="You get "+ pt+" points";
         }
@@ -238,37 +242,35 @@ public class ThirdActivity extends AppCompatActivity {
 
     }
 
-  /*  public void stopTimer(boolean flag)
+    public void stopTimer(boolean flag)
     {
         if(flag)
             stop();//stop timer
-    }*/
+    }
 
-    private View.OnClickListener vocl1 = new View.OnClickListener()
-    {
+    private View.OnClickListener vocl1 = new View.OnClickListener() {
 
         @Override
-        public void onClick(View v)
-        {
+        public void onClick(View v) {
             t1.setText(s1);
-            String w;
+            String w, dispmsg1;
             count[0] = 1;
             counter++;
             w = word1.getText().toString();
             System.out.println(w);
             processWord(w);
             word2.setText("");
-            setPoints();
+            dispmsg1 = points[0] +" POINTS";
+            t3.setText(dispmsg1);
+
             //fetch name of winner
             res = win.checkWinner(points[0], maxpts, 1);
-            //for debugging
-            //String temp= String.valueOf(res);
-            //Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_SHORT).show();
-            //dispError(temp, true);
-            //if person has won
-            if (res == 1 || res == 2)
-                goToFourthActivity();
 
+            //if person has won
+            if (res == 1 || res == 2) {
+                stopTimer(true);
+                goToFourthActivity();
+            }
         }
     };
 
@@ -278,13 +280,15 @@ public class ThirdActivity extends AppCompatActivity {
         public void onClick(View v)
         {
             t2.setText(s2);
-            String w;
+            String w, dispmsg2;
             count[0] = 2;
             counter++;
             w = word2.getText().toString();
             processWord(w);
             word1.setText("");
-            setPoints();
+            dispmsg2=points[1]+" POINTS";
+            t4.setText(dispmsg2);
+
             //fetch name of winner
             res=win.checkWinner(points[1], maxpts, 2);
 
@@ -299,9 +303,9 @@ public class ThirdActivity extends AppCompatActivity {
     {
         Intent intent=new Intent(this, FourthActivity.class);
         if(res==1)
-            winnername=s1;
+            winnername=s1.toUpperCase()+" WINS";
         else
-            winnername=s2;
+            winnername=s2.toUpperCase()+ " WINS";
         Bundle b=new Bundle();
         b.putString("winner", winnername);
         intent.putExtras(b);
@@ -315,26 +319,8 @@ public class ThirdActivity extends AppCompatActivity {
         toast.show();
 
     }
-    //no need for this right now as setText() is not quick
-    public void setPoints()
-    {
-        String dispmsg1="";
-        String dispmsg2="";
-        if(count[0]==1)
-        {
-            dispmsg1=String.valueOf(points[0])+" POINTS";
-            //t3.setText(dispmsg1);
-            updateTextView(dispmsg1, 3);
-        }
 
-        else if(count[0]==2)
-        {
-            dispmsg2=String.valueOf(points[1])+" POINTS";
-            //t4.setText(dispmsg2);
-            updateTextView(dispmsg2, 4);
-        }
-    }
-    /*
+
     Timer timer = new Timer();
     TimerTask task = new TimerTask() {
         public void run() {
@@ -361,8 +347,17 @@ public class ThirdActivity extends AppCompatActivity {
     {
         task.cancel();
     }
-*/
 
+    private void dispTimerMessage(final String msg){
+        ThirdActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast toast=Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER| Gravity.CENTER_HORIZONTAL, 0,0);
+                toast.show();
+            }
+        });
+    }
     private void updateTextView(final String s, final int code) {
         ThirdActivity.this.runOnUiThread(new Runnable() {
             @Override
@@ -375,8 +370,10 @@ public class ThirdActivity extends AppCompatActivity {
                     t3.setText(s);
                 else if(code==4)
                     t4.setText(s);
+
             }
         });
 
     }
+
 }
