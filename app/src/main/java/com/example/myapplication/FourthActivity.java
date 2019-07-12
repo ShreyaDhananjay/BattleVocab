@@ -13,10 +13,11 @@ import java.io.IOException;
 
 public class FourthActivity extends AppCompatActivity implements OnClickListener
 {
-    private TextView t;
+    private TextView t5, t6;
    // ThirdActivity ta;
     Button b1, b2, b3;
-    String win="";
+    String win="", msg="";
+    char c;
     /*public FourthActivity() throws IOException {
         ta = new ThirdActivity();
     }*/
@@ -25,7 +26,8 @@ public class FourthActivity extends AppCompatActivity implements OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fourth);
-        t=(TextView)findViewById(R.id.textView6);
+        t5=(TextView)findViewById(R.id.textView5);
+        t6=(TextView)findViewById(R.id.textView6);
         //t.setText(ta.res);
         b1=(Button)findViewById(R.id.button6);
         b1.setOnClickListener(this);
@@ -36,6 +38,9 @@ public class FourthActivity extends AppCompatActivity implements OnClickListener
         Bundle bundle=getIntent().getExtras();
         assert bundle != null;
         win=bundle.getString("winner");
+        c=bundle.getChar("mode");
+        if(c=='s')
+            msg=bundle.getString("message");
         set();
         //updateTextView();
     }
@@ -43,8 +48,10 @@ public class FourthActivity extends AppCompatActivity implements OnClickListener
     @Override
     public void onClick(View view)
     {
-        if(view==b1)
+        if(view==b1&& c=='m')
             startActivity(new Intent(this, SecondActivity.class));
+        else if(view==b1 && c=='s')
+            startActivity(new Intent(this, FifthActivity.class));
         else if(view==b2)
             startActivity(new Intent(this, MainActivity.class));
         /*else if(view==b3)
@@ -64,7 +71,9 @@ public class FourthActivity extends AppCompatActivity implements OnClickListener
     }
     public void set()
     {
-        t.setText(win);
+        t6.setText(win);
+        if(c=='s')
+          t5.setText(msg);
     }
 
 }

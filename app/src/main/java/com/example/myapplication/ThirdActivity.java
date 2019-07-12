@@ -306,8 +306,10 @@ public class ThirdActivity extends AppCompatActivity {
             winnername=s1.toUpperCase()+" WINS";
         else
             winnername=s2.toUpperCase()+ " WINS";
+        char mode='m';
         Bundle b=new Bundle();
         b.putString("winner", winnername);
+        b.putChar("mode", mode);
         intent.putExtras(b);
         startActivity(intent);
     }

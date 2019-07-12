@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -50,13 +51,14 @@ public class SixthActivity extends AppCompatActivity {
     ArrayList <String> X_Letter = new ArrayList<String>();
     ArrayList <String> Y_Letter = new ArrayList<String>();
     ArrayList <String> Z_Letter = new ArrayList<String>();
-    TextView t13, t14;
+    TextView t13, t14, t15;
     EditText e;
     Button b11;
     int counter=0, result=0, seconds_passed=0, turn=0;
     int a=1, b=1, c=1, d=1, e1=1, f=1, g=1, h=1, i=1, j=1, k=1, l=1, m=1, n=1, o=1, p=1, q=1, r1=1, s=1, t=1, u=1, v=1, w=1, x=1, y=1, z=1;
     int [] points=new int[2];
-    String pts1="", pts2="";
+    String pts1="", pts2="", c_word="";
+    boolean err_flag=false;
     Winner winner;
 
     public SixthActivity() {
@@ -69,6 +71,7 @@ public class SixthActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sixth);
         t13=(TextView)findViewById(R.id.textView13);
         t14=(TextView)findViewById(R.id.textView14);
+        t15=(TextView)findViewById(R.id.textView15);
         e=(EditText)findViewById(R.id.editText);
         b11=(Button)findViewById(R.id.button11);
 
@@ -172,6 +175,9 @@ public class SixthActivity extends AppCompatActivity {
         Collections.shuffle(Z_Letter);
 
         b11.setOnClickListener(vocl);
+        firstWord();//first computer generated word
+
+
     }//end of onCreate()
 
     Timer timer = new Timer();
@@ -182,6 +188,7 @@ public class SixthActivity extends AppCompatActivity {
             {
                 errorMessage(4);
                 System.out.println("Time's up!");
+                computerWord();
                 cancel();
                 //start();
             }
@@ -233,21 +240,10 @@ public class SixthActivity extends AppCompatActivity {
                 if (index == -1)//new word entered
                 {
                     used_words.add(word);
-
-                    if(turn==1)//word played by player
-                    {
-                        points[0]+=word.length();
-                        pts1=points[0]+ " POINTS";
-                        removeUserPlayedWord(word);
-                    }
-
-                    else//word played by CPU
-                    {
-
-                        //noError(disp);
-                        points[1]+=word.length();
-                        pts2=points[1]+ " POINTS";
-                    }
+                    points[0]+=word.length();
+                    pts1=points[0]+ " POINTS";
+                    removeUserPlayedWord(word);
+                    err_flag=true;
                 }
 
                 else//word starts w/ correct letter but has already been entered
@@ -303,65 +299,103 @@ public class SixthActivity extends AppCompatActivity {
             counter++;
             String w=e.getText().toString();//get word
             processWord(w);
+            if(err_flag)
+                t13.setText(pts1);
+
             result=winner.checkWinner(points[0], 50, 1);
-            if(result==1) goToSeventhActivity();
+            if(result==1) goToLastScreen();
             e.setText("");
             //e.getText().clear();
-            t13.setText(pts1);
-            computerWord();
-            result=winner.checkWinner(points[1], 50, 2);
-            if(result==2) goToSeventhActivity();
-
+            if(result!=1) {
+                computerWord();
+                t15.setText(c_word);
+                t14.setText(pts2);
+                result = winner.checkWinner(points[1], 50, 2);
+                if (result == 2) goToLastScreen();
+            }
         }
 
     };
 
-    private void goToSeventhActivity() {
+    private void goToLastScreen() {
+        String winnername="", message="";
+        Intent intent=new Intent(this, FourthActivity.class);
+        if(result==1)
+        {
+            winnername="PLAYER WINS";
+            message="CONGRATULATIONS!!";
+        }
+        else
+        {
+            winnername="COMPUTER WINS";
+            message="OOPS!";
+        }
+        char mode='s';
+        Bundle b=new Bundle();
+        b.putString("winner", winnername);
+        b.putString("message", message);
+        b.putChar("mode", mode);
+        intent.putExtras(b);
+        startActivity(intent);
+
     }
 
-    public void computerWord()
+    private void updateTextView(final String s) {
+        SixthActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                t15.setText(s);
+                String disp=points[1]+" POINTS";
+                t14.setText(disp);
+            }
+        });
+
+    }
+    public void firstWord()
     {
         Random r=new Random();
         int letter=r.nextInt(26);
-        if(counter==0)//first word of the game
+        String first_word="";
+        switch (letter)
         {
-            String first_word="";
-            switch (letter)
-            {
-                case 0: first_word=A_Letter.get(0); break;
-                case 1: first_word=B_Letter.get(0); break;
-                case 2: first_word=C_Letter.get(0); break;
-                case 3: first_word=D_Letter.get(0); break;
-                case 4: first_word=E_Letter.get(0); break;
-                case 5: first_word=F_Letter.get(0); break;
-                case 6: first_word=G_Letter.get(0); break;
-                case 7: first_word=H_Letter.get(0); break;
-                case 8: first_word=I_Letter.get(0); break;
-                case 9: first_word=J_Letter.get(0); break;
-                case 10: first_word=K_Letter.get(0); break;
-                case 11: first_word=L_Letter.get(0); break;
-                case 12: first_word=M_Letter.get(0); break;
-                case 13: first_word=N_Letter.get(0); break;
-                case 14: first_word=O_Letter.get(0); break;
-                case 15: first_word=P_Letter.get(0); break;
-                case 16: first_word=Q_Letter.get(0); break;
-                case 17: first_word=R_Letter.get(0); break;
-                case 18: first_word=S_Letter.get(0); break;
-                case 19: first_word=T_Letter.get(0); break;
-                case 20: first_word=U_Letter.get(0); break;
-                case 21: first_word=V_Letter.get(0); break;
-                case 22: first_word=W_Letter.get(0); break;
-                case 23: first_word=X_Letter.get(0); break;
-                case 24: first_word=Y_Letter.get(0); break;
-                case 25: first_word=Z_Letter.get(0); break;
-            }//end of switch
-            used_words.add(first_word);
-        }
+            case 0: first_word=A_Letter.get(0); break;
+            case 1: first_word=B_Letter.get(0); break;
+            case 2: first_word=C_Letter.get(0); break;
+            case 3: first_word=D_Letter.get(0); break;
+            case 4: first_word=E_Letter.get(0); break;
+            case 5: first_word=F_Letter.get(0); break;
+            case 6: first_word=G_Letter.get(0); break;
+            case 7: first_word=H_Letter.get(0); break;
+            case 8: first_word=I_Letter.get(0); break;
+            case 9: first_word=J_Letter.get(0); break;
+            case 10: first_word=K_Letter.get(0); break;
+            case 11: first_word=L_Letter.get(0); break;
+            case 12: first_word=M_Letter.get(0); break;
+            case 13: first_word=N_Letter.get(0); break;
+            case 14: first_word=O_Letter.get(0); break;
+            case 15: first_word=P_Letter.get(0); break;
+            case 16: first_word=Q_Letter.get(0); break;
+            case 17: first_word=R_Letter.get(0); break;
+            case 18: first_word=S_Letter.get(0); break;
+            case 19: first_word=T_Letter.get(0); break;
+            case 20: first_word=U_Letter.get(0); break;
+            case 21: first_word=V_Letter.get(0); break;
+            case 22: first_word=W_Letter.get(0); break;
+            case 23: first_word=X_Letter.get(0); break;
+            case 24: first_word=Y_Letter.get(0); break;
+            case 25: first_word=Z_Letter.get(0); break;
+        }//end of switch
+        used_words.add(first_word);
+        points[1]+=first_word.length();
+        updateTextView(first_word);
+    }
 
-        else//not first word
-        {
+
+    public void computerWord()
+    {
+
             int list_size, prev_length, index;
-            String c_word="", prev="";
+            String prev="";
             list_size = used_words.size();
             //index = used_words.indexOf(word);
             prev = used_words.get(list_size - 1);
@@ -396,10 +430,11 @@ public class SixthActivity extends AppCompatActivity {
                 case 'Y': c_word=Y_Letter.get(y); y++; used_words.add(c_word); break;
                 case 'Z': c_word=Z_Letter.get(z); z++; used_words.add(c_word); break;
             }
-            points[1]+=c_word.length();
-        }
-
+        points[1]+=c_word.length();
+        pts2=points[1]+ " POINTS";
     }
+
+
 
     public void removeUserPlayedWord(String w)
     {
