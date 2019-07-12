@@ -58,7 +58,7 @@ public class SixthActivity extends AppCompatActivity {
     int a=1, b=1, c=1, d=1, e1=1, f=1, g=1, h=1, i=1, j=1, k=1, l=1, m=1, n=1, o=1, p=1, q=1, r1=1, s=1, t=1, u=1, v=1, w=1, x=1, y=1, z=1;
     int [] points=new int[2];
     String pts1="", pts2="", c_word="";
-    boolean err_flag=false;
+    boolean err_flag=false, flag=false;//flag is only true if there's an error
     Winner winner;
 
     public SixthActivity() {
@@ -263,7 +263,6 @@ public class SixthActivity extends AppCompatActivity {
     public void errorMessage(int code)
     {
         String err="";
-        boolean flag=false;
         switch(code) {
             case 1:
                 err = "Word already played! Enter another one";
@@ -283,7 +282,6 @@ public class SixthActivity extends AppCompatActivity {
             case 4:
                 err = "Time's up!\nYour turn has passed";
                 counter--;
-                flag = true;
                 break;
             //default: err="You get "+ pt+" points";
         }
@@ -306,13 +304,15 @@ public class SixthActivity extends AppCompatActivity {
             if(result==1) goToLastScreen();
             e.setText("");
             //e.getText().clear();
-            if(result!=1) {
+            if(result!=1 && !flag) {
                 computerWord();
                 t15.setText(c_word);
                 t14.setText(pts2);
                 result = winner.checkWinner(points[1], 50, 2);
                 if (result == 2) goToLastScreen();
             }
+            else
+                flag=false;//set to previous state
         }
 
     };
