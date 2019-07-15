@@ -51,7 +51,7 @@ public class FourthActivity extends AppCompatActivity implements OnClickListener
         if(view==b1&& c=='m')
             startActivity(new Intent(this, SecondActivity.class));
         else if(view==b1 && c=='s')
-            startActivity(new Intent(this, FifthActivity.class));
+            startActivity(new Intent(this, SixthActivity.class));
         else if(view==b2)
             startActivity(new Intent(this, MainActivity.class));
         /*else if(view==b3)

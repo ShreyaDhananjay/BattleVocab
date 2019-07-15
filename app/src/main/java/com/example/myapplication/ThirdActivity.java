@@ -147,6 +147,7 @@ public class ThirdActivity extends AppCompatActivity {
                             //disp=s1+" gets "+String.valueOf(s.length())+ " points";
                             //noError(disp);
                             points[0]+=s.length();
+                            error_flag=false;
                             //stopTimer(flag);
                         }
 
@@ -155,6 +156,7 @@ public class ThirdActivity extends AppCompatActivity {
                              //disp=s2+" gets "+String.valueOf(s.length())+ " points";
                              //noError(disp);
                              points[1]+=s.length();
+                             error_flag=false;
                              //stopTimer(flag);
                          }
                     }
@@ -180,6 +182,7 @@ public class ThirdActivity extends AppCompatActivity {
                         //disp = s1 + " gets " + String.valueOf(s.length()) + " points";
                         //noError(disp);
                         points[0] += s.length();
+                        error_flag=false;
                         //stopTimer(true);
                     }
                     else if (count[0] == 2)
@@ -187,6 +190,7 @@ public class ThirdActivity extends AppCompatActivity {
                         //disp = s2 + " gets " + String.valueOf(s.length()) + " points";
                         //noError(disp);
                         points[1] += s.length();
+                        error_flag=false;
                         //stopTimer(true);
                     }
                 }
