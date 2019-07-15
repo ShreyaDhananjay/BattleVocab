@@ -9,58 +9,63 @@
     tools:context="com.example.myapplication.MainActivity">
 
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        android:background="?android:attr/windowBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
-
     <Button
         android:id="@+id/button"
-        android:layout_width="161dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="350dp"
-        android:layout_marginBottom="261dp"
-        android:background="@drawable/ic_launcher_background"
-        app:fontFamily="@font/fredoka_one"
+        android:layout_width="164dp"
+        android:layout_height="63dp"
+
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="343dp"
+        android:layout_marginEnd="219dp"
+        android:layout_marginBottom="253dp"
+        android:background="#5A8673"
         android:text="@string/single"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:typeface="normal"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view"
+        app:fontFamily="@font/fredoka_one"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button1"
-        android:layout_width="166dp"
+        android:layout_width="163dp"
         android:layout_height="63dp"
-        android:layout_marginStart="66dp"
-        android:layout_marginLeft="66dp"
+
+        android:layout_marginStart="236dp"
         android:layout_marginTop="365dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginRight="22dp"
-        android:layout_marginBottom="262dp"
-        android:background="@color/colorAccent"
-        app:fontFamily="@font/fredoka_one"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="231dp"
+        android:background="#D41C2C"
         android:text="@string/pass"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view"
+        app:fontFamily="@font/fredoka_one"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Pass and Play" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="387dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="508dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="88dp"
+        android:background="#90808080"
+        android:text="@string/ins"
+        android:textSize="20sp"
+        app:fontFamily="@font/fredoka_one"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

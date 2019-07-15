@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,9 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class SixthActivity extends AppCompatActivity {
 
@@ -61,8 +65,10 @@ public class SixthActivity extends AppCompatActivity {
     boolean err_flag=false, flag=false;//flag is only true if there's an error
     Winner winner;
 
-    public SixthActivity() {
+    public SixthActivity()throws IOException
+    {
         winner = new Winner();
+
     }
 
     @Override
@@ -177,20 +183,19 @@ public class SixthActivity extends AppCompatActivity {
         b11.setOnClickListener(vocl);
         firstWord();//first computer generated word
 
-
+       // start();
     }//end of onCreate()
 
-    Timer timer = new Timer();
+    /*Timer timer = new Timer();
     TimerTask task = new TimerTask() {
         public void run() {
             seconds_passed++;
-            if (seconds_passed == 20)
+            if (seconds_passed == 5)
             {
                 errorMessage(4);
                 System.out.println("Time's up!");
-                computerWord();
-                cancel();
-                //start();
+                //computerWord();
+                stop();
             }
         }
     };
@@ -206,7 +211,9 @@ public class SixthActivity extends AppCompatActivity {
     public void stop()
     {
         task.cancel();
-    }
+
+        seconds_passed=0;
+    }*/
 
     private void dispTimerMessage(final String msg){
         SixthActivity.this.runOnUiThread(new Runnable() {
@@ -215,6 +222,11 @@ public class SixthActivity extends AppCompatActivity {
                 Toast toast=Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER| Gravity.CENTER_HORIZONTAL, 0,0);
                 toast.show();
+                computerWord();
+                t15.setText(c_word);
+                t14.setText(pts2);
+                seconds_passed=0;
+                //start();
             }
         });
     }
@@ -244,6 +256,8 @@ public class SixthActivity extends AppCompatActivity {
                     pts1=points[0]+ " POINTS";
                     removeUserPlayedWord(word);
                     err_flag=true;
+                    //stop();
+
                 }
 
                 else//word starts w/ correct letter but has already been entered
@@ -282,6 +296,7 @@ public class SixthActivity extends AppCompatActivity {
             case 4:
                 err = "Time's up!\nYour turn has passed";
                 counter--;
+                dispTimerMessage(err);
                 break;
             //default: err="You get "+ pt+" points";
         }
@@ -298,13 +313,17 @@ public class SixthActivity extends AppCompatActivity {
             String w=e.getText().toString();//get word
             processWord(w);
             if(err_flag)
+            {
                 t13.setText(pts1);
+                //timerClass.stop(context);
+            }
 
             result=winner.checkWinner(points[0], 50, 1);
             if(result==1) goToLastScreen();
             e.setText("");
             //e.getText().clear();
-            if(result!=1 && !flag) {
+            if(result!=1 && !flag)
+            {
                 computerWord();
                 t15.setText(c_word);
                 t14.setText(pts2);

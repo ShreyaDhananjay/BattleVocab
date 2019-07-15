@@ -42,17 +42,18 @@ public class ThirdActivity extends AppCompatActivity {
     int [] points=new int[2];
     public int [] count=new int[1];//so it's a reference variable that automatically gets updated
     char c;
+    boolean error_flag=false;//will be true if word entered is wrong
     String s1="",s2="", disp="", winnername;
     String []data=new String[3];
     Winner win;
-    //TimerClass tc;
+
 
 
     public ThirdActivity() throws IOException {
-      //  mg = new MainGame();
+
        // sa=new SecondActivity();
         win=new Winner();
-      //  tc=new TimerClass();
+
 
     }
 
@@ -105,7 +106,7 @@ public class ThirdActivity extends AppCompatActivity {
             e.printStackTrace();
             System.out.println("ERROR LOADING DICTIONARY");
         }
-        start();//start timer
+        //start();//start timer
 
 
     }//end of onCreate
@@ -146,7 +147,7 @@ public class ThirdActivity extends AppCompatActivity {
                             //disp=s1+" gets "+String.valueOf(s.length())+ " points";
                             //noError(disp);
                             points[0]+=s.length();
-                            stopTimer(flag);
+                            //stopTimer(flag);
                         }
 
                         else
@@ -154,7 +155,7 @@ public class ThirdActivity extends AppCompatActivity {
                              //disp=s2+" gets "+String.valueOf(s.length())+ " points";
                              //noError(disp);
                              points[1]+=s.length();
-                             stopTimer(flag);
+                             //stopTimer(flag);
                          }
                     }
 
@@ -179,14 +180,14 @@ public class ThirdActivity extends AppCompatActivity {
                         //disp = s1 + " gets " + String.valueOf(s.length()) + " points";
                         //noError(disp);
                         points[0] += s.length();
-                        stopTimer(true);
+                        //stopTimer(true);
                     }
                     else if (count[0] == 2)
                     {
                         //disp = s2 + " gets " + String.valueOf(s.length()) + " points";
                         //noError(disp);
                         points[1] += s.length();
-                        stopTimer(true);
+                        //stopTimer(true);
                     }
                 }
 
@@ -219,21 +220,24 @@ public class ThirdActivity extends AppCompatActivity {
                 err = "Word already played! Enter another one";
                 counter--;
                 flag = true;
+                error_flag=true;
                 break;
             case 2:
                 err = "The word must start with the last letter of the previous word";
                 counter--;
                 flag = true;
+                error_flag=true;
                 break;
             case 3:
                 err = "The word does not belong in the dictionary";
                 counter--;
                 flag = true;
+                error_flag=true;
                 break;
             case 4:
                 err = "Time's up!\nYour turn has passed";
                 counter--;
-                dispTimerMessage(err);
+                //dispTimerMessage(err);
                 break;
             //default: err="You get "+ pt+" points";
         }
@@ -241,12 +245,12 @@ public class ThirdActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), err,Toast.LENGTH_SHORT ).show();
 
     }
-
+/*
     public void stopTimer(boolean flag)
     {
         if(flag)
             stop();//stop timer
-    }
+    }*/
 
     private View.OnClickListener vocl1 = new View.OnClickListener() {
 
@@ -262,13 +266,17 @@ public class ThirdActivity extends AppCompatActivity {
             word2.setText("");
             dispmsg1 = points[0] +" POINTS";
             t3.setText(dispmsg1);
-
+            if(!error_flag)
+            {
+                word2.requestFocus();
+                //stop();
+            }
             //fetch name of winner
             res = win.checkWinner(points[0], maxpts, 1);
 
             //if person has won
             if (res == 1 || res == 2) {
-                stopTimer(true);
+                //stopTimer(true);
                 goToFourthActivity();
             }
         }
@@ -288,14 +296,20 @@ public class ThirdActivity extends AppCompatActivity {
             word1.setText("");
             dispmsg2=points[1]+" POINTS";
             t4.setText(dispmsg2);
-
+            if(!error_flag)
+            {
+                word1.requestFocus();
+                //stop();
+            }
             //fetch name of winner
             res=win.checkWinner(points[1], maxpts, 2);
 
             //if person has won
             if(res==1 || res==2)
+            {
+                //stopFully();
                 goToFourthActivity();
-
+            }
         }
     };
 
@@ -321,13 +335,13 @@ public class ThirdActivity extends AppCompatActivity {
         toast.show();
 
     }
-
+/*
 
     Timer timer = new Timer();
     TimerTask task = new TimerTask() {
         public void run() {
             secondspassed++;
-            if (secondspassed == 20)
+            if (secondspassed == 5)
             {
                 errorMessage(4);
                 System.out.println("Time's up!");
@@ -347,7 +361,31 @@ public class ThirdActivity extends AppCompatActivity {
 
     public void stop()
     {
-        task.cancel();
+        timer.cancel();
+        timer=new Timer();
+        secondspassed=0;
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                secondspassed++;
+                if (secondspassed == 5) {
+                    ThirdActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast toast = Toast.makeText(getApplicationContext(), "Time's Up", Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
+                            toast.show();
+                        }
+                    });
+                    stop();
+                }
+            }
+
+        }, 1000, 1000);
+    }
+    public void stopFully()
+    {
+        timer.cancel();
     }
 
     private void dispTimerMessage(final String msg){
@@ -359,7 +397,7 @@ public class ThirdActivity extends AppCompatActivity {
                 toast.show();
             }
         });
-    }
+    }*/
     private void updateTextView(final String s, final int code) {
         ThirdActivity.this.runOnUiThread(new Runnable() {
             @Override

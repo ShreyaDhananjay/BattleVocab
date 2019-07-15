@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".SixthActivity"></activity>
+        <activity android:name=".InstructionsActivity"></activity>
+        <activity android:name=".SixthActivity" />
         <activity android:name=".FifthActivity" />
         <activity android:name=".SecondActivity" />
         <activity android:name=".ThirdActivity" />
