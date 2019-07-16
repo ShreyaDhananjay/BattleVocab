@@ -341,12 +341,12 @@ public class SixthActivity extends AppCompatActivity {
         Intent intent=new Intent(this, FourthActivity.class);
         if(result==1)
         {
-            winnername="PLAYER WINS";
+            winnername="YOU WIN";
             message="CONGRATULATIONS!!";
         }
         else
         {
-            winnername="COMPUTER WINS";
+            winnername="YOU LOSE";
             message="OOPS!";
         }
         char mode='s';

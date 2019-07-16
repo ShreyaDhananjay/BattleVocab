@@ -16,7 +16,7 @@
         android:layout_marginEnd="212dp"
         android:layout_marginBottom="499dp"
         android:fontFamily="@font/fredoka_one"
-        android:text="@string/player"
+        android:text="@string/you"
         android:textAlignment="center"
         android:textColor="#050E41"
         android:textSize="30sp"
