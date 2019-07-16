@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1CB38B"
+    tools:context="com.example.myapplication.InstructionsActivity">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="360dp"
+        android:layout_height="540dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="359dp"
+                android:layout_height="528dp"
+                android:text="@string/instruc"
+                android:textAlignment="center"
+                android:textColor="#050E41"
+                android:textSize="25sp"
+                app:fontFamily="@font/fredoka_one"
+
+                />
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

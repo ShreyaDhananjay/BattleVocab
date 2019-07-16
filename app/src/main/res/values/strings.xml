@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Battle Vocab</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_levels">levels</string>
+    <string name="enter_word">Enter word</string>
+    <string name="player1">Player 1</string>
+    <string name="player2">Player 2</string>
+    <string name="enterval">Enter value </string>
+    <string name="entername">Enter name</string>
+    <string name="click">CLICK HERE FOR THE WINNER\'S NAME!</string>
+    <string name="action_settings">Settings</string>
+    <string name="done">DONE</string>
+    <string name="maxpt">Maximum points</string>
+    <string name="single">Single Player</string>
+    <string name="pass">Pass and Play</string>
+    <string name="congr">CONGRATULATIONS!!</string>
+    <string name="winner">Winner</string>
+    <string name="play_again">PLAY AGAIN</string>
+    <string name="go">GO!</string>
+    <string name="_0_points">0 POINTS</string>
+    <string name="app_level">EASY</string>
+    <string name="app_level1">MODERATE</string>
+    <string name="app_level2">DIFFICULT</string>
+    <string name="player">Player</string>
+    <string name="computer">Computer</string>
+    <string name="ins">Instructions</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="instruc">Confident in the size of your English vocabulary? Show it off in this challenging word-based battle game!
+        \n\nThis word game can be played in two modes, Single Player and Pass and Play. The basic objective of the game is to make words with the last letter of the previously played word. Words may not be repeated in any mode.
+        \n\nIn the pass and play mode, the players may choose how many points they will play up to (50 is optimum). Player 1 must make the first word with the random letter displayed before the game begins and subsequent words with the last letter of the previous word. Whichever player reaches or crosses the maximum first is declared as the winner.
+\n\nIn the single player mode the player plays against the computer. The computer plays the first word, and the player must make their first word with the last letter of the word played by the computer, and the game continues. Whoever reaches or crosses 50 points first is declared as the winner.
+</string>
+</resources>

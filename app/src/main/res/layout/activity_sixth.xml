@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/file1"
+    tools:context="com.example.myapplication.SixthActivity">
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="184dp"
+        android:layout_height="102dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginEnd="212dp"
+        android:layout_marginBottom="499dp"
+        android:fontFamily="@font/fredoka_one"
+        android:text="@string/player"
+        android:textAlignment="center"
+        android:textColor="#050E41"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:fontFamily="@font/fredoka_one" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="184dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="213dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="502dp"
+        android:fontFamily="@font/fredoka_one"
+        android:text="@string/computer"
+        android:textAlignment="center"
+        android:textColor="#050E41"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:fontFamily="@font/fredoka_one" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="120dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="359dp"
+        android:layout_marginEnd="285dp"
+        android:layout_marginBottom="230dp"
+        android:ems="10"
+        android:hint="@string/enter_word"
+        android:inputType="textPersonName"
+        android:text=""
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="185dp"
+        android:layout_height="102dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="192dp"
+        android:layout_marginEnd="210dp"
+        android:layout_marginBottom="365dp"
+        android:fontFamily="@font/fredoka_one"
+        android:text="@string/_0_points"
+        android:textAlignment="center"
+        android:textColor="#050E41"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:FontFamily="@font/fredoka_one" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="185dp"
+        android:layout_height="102dp"
+        android:layout_marginStart="213dp"
+        android:layout_marginTop="194dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="363dp"
+        android:fontFamily="@font/fredoka_one"
+        android:text="@string/_0_points"
+        android:textAlignment="center"
+        android:textColor="#050E41"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:FontFamily="@font/fredoka_one" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="75dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="133dp"
+        android:layout_marginTop="358dp"
+        android:layout_marginEnd="203dp"
+        android:layout_marginBottom="230dp"
+        android:background="#5A8673"
+        android:fontFamily="@font/fredoka_one"
+        android:text="@string/done"
+        android:textAlignment="center"
+        android:textColor="#050E41"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:FontFamily="@font/fredoka_one" />
+
+    <LinearLayout
+        android:layout_width="183dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="356dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="232dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="159dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/fredoka_one"
+            android:text="@string/player"
+            android:textAlignment="center"
+            android:textColor="#050E41"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="395dp"
+        android:layout_height="214dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"></LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
