@@ -61,6 +61,7 @@ public class SixthActivity extends AppCompatActivity {
     int counter=0, result=0, seconds_passed=0, turn=0;
     int a=1, b=1, c=1, d=1, e1=1, f=1, g=1, h=1, i=1, j=1, k=1, l=1, m=1, n=1, o=1, p=1, q=1, r1=1, s=1, t=1, u=1, v=1, w=1, x=1, y=1, z=1;
     int [] points=new int[2];
+    int level=0;
     String pts1="", pts2="", c_word="";
     boolean err_flag=false, flag=false;//flag is only true if there's an error
     Winner winner;
@@ -80,106 +81,127 @@ public class SixthActivity extends AppCompatActivity {
         t15=(TextView)findViewById(R.id.textView15);
         e=(EditText)findViewById(R.id.editText);
         b11=(Button)findViewById(R.id.button11);
-
+        Bundle bundle=getIntent().getExtras();
+        assert bundle != null;
+        level=bundle.getInt("level");
         AssetManager assetManager=getAssets();
         try
         {
             InputStream inputStream=assetManager.open("wordlist3.txt");
             BufferedReader br=new BufferedReader(new InputStreamReader(inputStream));
             String line;
-            while((line=br.readLine())!=null)
+            if(level==3)
             {
-                String word=line.trim();
-                word_list1.add(word);
-                if(line.startsWith("A"))
-                    A_Letter.add(line);
-                else if(line.startsWith("B"))
-                    B_Letter.add(line);
-                else if (line.startsWith("C"))
-                    C_Letter.add(line);
-                else if (line.startsWith("D"))
-                    D_Letter.add(line);
-                else if (line.startsWith("E"))
-                    E_Letter.add(line);
-                else if (line.startsWith("F"))
-                    F_Letter.add(line);
-                else if (line.startsWith("G"))
-                    G_Letter.add(line);
-                else if (line.startsWith("H"))
-                    H_Letter.add(line);
-                else if (line.startsWith("I"))
-                    I_Letter.add(line);
-                else if (line.startsWith("J"))
-                    J_Letter.add(line);
-                else if (line.startsWith("K"))
-                    K_Letter.add(line);
-                else if (line.startsWith("L"))
-                    L_Letter.add(line);
-                else if (line.startsWith("M"))
-                    M_Letter.add(line);
-                else if (line.startsWith("N"))
-                    N_Letter.add(line);
-                else if (line.startsWith("O"))
-                    O_Letter.add(line);
-                else if (line.startsWith("P"))
-                    P_Letter.add(line);
-                else if (line.startsWith("Q"))
-                    Q_Letter.add(line);
-                else if (line.startsWith("R"))
-                    R_Letter.add(line);
-                else if (line.startsWith("S"))
-                    S_Letter.add(line);
-                else if (line.startsWith("T"))
-                    T_Letter.add(line);
-                else if (line.startsWith("U"))
-                    U_Letter.add(line);
-                else if (line.startsWith("V"))
-                    V_Letter.add(line);
-                else if (line.startsWith("W"))
-                    W_Letter.add(line);
-                else if (line.startsWith("X"))
-                    X_Letter.add(line);
-                else if (line.startsWith("Y"))
-                    Y_Letter.add(line);
-                else if (line.startsWith("Z"))
-                    Z_Letter.add(line);
-
+                while((line=br.readLine())!=null)
+                {
+                    String word=line.trim();
+                    if (line.startsWith("W"))
+                    {
+                        word_list1.add(word);//for checking for binary search
+                        W_Letter.add(line);//for computer to suggest words
+                    }
+                }
             }
-            System.out.println(java.util.Collections.binarySearch(word_list1, "HOUSE"));
+            else if(level==1)
+            {
+                while((line=br.readLine())!=null)
+                {
+                    String word=line.trim();
+                    word_list1.add(word);
+                    if(line.startsWith("A"))
+                        A_Letter.add(line);
+                    else if(line.startsWith("B"))
+                        B_Letter.add(line);
+                    else if (line.startsWith("C"))
+                        C_Letter.add(line);
+                    else if (line.startsWith("D"))
+                        D_Letter.add(line);
+                    else if (line.startsWith("E"))
+                        E_Letter.add(line);
+                    else if (line.startsWith("F"))
+                        F_Letter.add(line);
+                    else if (line.startsWith("G"))
+                        G_Letter.add(line);
+                    else if (line.startsWith("H"))
+                        H_Letter.add(line);
+                    else if (line.startsWith("I"))
+                        I_Letter.add(line);
+                    else if (line.startsWith("J"))
+                        J_Letter.add(line);
+                    else if (line.startsWith("K"))
+                        K_Letter.add(line);
+                    else if (line.startsWith("L"))
+                        L_Letter.add(line);
+                    else if (line.startsWith("M"))
+                        M_Letter.add(line);
+                    else if (line.startsWith("N"))
+                        N_Letter.add(line);
+                    else if (line.startsWith("O"))
+                        O_Letter.add(line);
+                    else if (line.startsWith("P"))
+                        P_Letter.add(line);
+                    else if (line.startsWith("Q"))
+                        Q_Letter.add(line);
+                    else if (line.startsWith("R"))
+                        R_Letter.add(line);
+                    else if (line.startsWith("S"))
+                        S_Letter.add(line);
+                    else if (line.startsWith("T"))
+                        T_Letter.add(line);
+                    else if (line.startsWith("U"))
+                        U_Letter.add(line);
+                    else if (line.startsWith("V"))
+                        V_Letter.add(line);
+                    else if (line.startsWith("W"))
+                        W_Letter.add(line);
+                    else if (line.startsWith("X"))
+                        X_Letter.add(line);
+                    else if (line.startsWith("Y"))
+                        Y_Letter.add(line);
+                    else if (line.startsWith("Z"))
+                        Z_Letter.add(line);
+
+                }
+                System.out.println(java.util.Collections.binarySearch(word_list1, "HOUSE"));
+            }
+
         }
 
         catch (IOException e) {
             e.printStackTrace();
             System.out.println("ERROR LOADING DICTIONARY");
         }
+        if(level==1) {
+            Collections.shuffle(A_Letter);
 
-        Collections.shuffle(A_Letter);
-        Collections.shuffle(B_Letter);
-        Collections.shuffle(C_Letter);
-        Collections.shuffle(D_Letter);
-        Collections.shuffle(E_Letter);
-        Collections.shuffle(F_Letter);
-        Collections.shuffle(G_Letter);
-        Collections.shuffle(H_Letter);
-        Collections.shuffle(I_Letter);
-        Collections.shuffle(J_Letter);
-        Collections.shuffle(K_Letter);
-        Collections.shuffle(L_Letter);
-        Collections.shuffle(M_Letter);
-        Collections.shuffle(N_Letter);
-        Collections.shuffle(O_Letter);
-        Collections.shuffle(P_Letter);
-        Collections.shuffle(Q_Letter);
-        Collections.shuffle(R_Letter);
-        Collections.shuffle(S_Letter);
-        Collections.shuffle(T_Letter);
-        Collections.shuffle(U_Letter);
-        Collections.shuffle(V_Letter);
-        Collections.shuffle(W_Letter);
-        Collections.shuffle(X_Letter);
-        Collections.shuffle(Y_Letter);
-        Collections.shuffle(Z_Letter);
-
+            Collections.shuffle(B_Letter);
+            Collections.shuffle(C_Letter);
+            Collections.shuffle(D_Letter);
+            Collections.shuffle(E_Letter);
+            Collections.shuffle(F_Letter);
+            Collections.shuffle(G_Letter);
+            Collections.shuffle(H_Letter);
+            Collections.shuffle(I_Letter);
+            Collections.shuffle(J_Letter);
+            Collections.shuffle(K_Letter);
+            Collections.shuffle(L_Letter);
+            Collections.shuffle(M_Letter);
+            Collections.shuffle(N_Letter);
+            Collections.shuffle(O_Letter);
+            Collections.shuffle(P_Letter);
+            Collections.shuffle(Q_Letter);
+            Collections.shuffle(R_Letter);
+            Collections.shuffle(S_Letter);
+            Collections.shuffle(T_Letter);
+            Collections.shuffle(U_Letter);
+            Collections.shuffle(V_Letter);
+            Collections.shuffle(W_Letter);
+            Collections.shuffle(X_Letter);
+            Collections.shuffle(Y_Letter);
+            Collections.shuffle(Z_Letter);
+        }
+        else if(level==3)
+            Collections.shuffle(W_Letter);
         b11.setOnClickListener(vocl);
         firstWord();//first computer generated word
 
@@ -240,38 +262,66 @@ public class SixthActivity extends AppCompatActivity {
         String word=w.toUpperCase();
         int index,list_size, prev_length;
         String prev;
-        if(contain(word))
+        if(level==3)
         {
-            list_size = used_words.size();
             index = used_words.indexOf(word);
-            prev = used_words.get(list_size - 1);
-            prev_length = prev.length();
-
-            if (word.charAt(0) == prev.charAt(prev_length - 1))//if last letter of previous word is the starting letter of next word//
+            if(word.charAt(0)=='W')
             {
-                if (index == -1)//new word entered
+                if(contain(word))
                 {
-                    used_words.add(word);
-                    points[0]+=word.length();
-                    pts1=points[0]+ " POINTS";
-                    removeUserPlayedWord(word);
-                    err_flag=true;
-                    //stop();
+                    if(index==-1)
+                    {
+                        used_words.add(word);
+                        points[0]+=word.length();
+                        pts1=points[0]+ " POINTS";
+                        removeUserPlayedWord(word);
+                        err_flag=true;
 
+                    }
+                    else//word has been played
+                        errorMessage(1);
+                }
+                else//not a dictionary word
+                    errorMessage(3);
+            }
+            else//doesnt start w/ W
+            errorMessage(5);
+        }
+        else if(level==1)
+        {
+            if(contain(word))
+            {
+                list_size = used_words.size();
+                index = used_words.indexOf(word);
+                prev = used_words.get(list_size - 1);
+                prev_length = prev.length();
+
+                if (word.charAt(0) == prev.charAt(prev_length - 1))//if last letter of previous word is the starting letter of next word//
+                {
+                    if (index == -1)//new word entered
+                    {
+                        used_words.add(word);
+                        points[0]+=word.length();
+                        pts1=points[0]+ " POINTS";
+                        removeUserPlayedWord(word);
+                        err_flag=true;
+                        //stop();
+
+                    }
+
+                    else//word starts w/ correct letter but has already been entered
+                        errorMessage(1);
                 }
 
-                else//word starts w/ correct letter but has already been entered
-                    errorMessage(1);
-            }
-
-            else//word starts w/ wrong letter
-                errorMessage(2);
+                else//word starts w/ wrong letter
+                    errorMessage(2);
 
 
-        }//end of outermost if
+            }//end of outermost if
 
-        else//not a valid word
-            errorMessage(3);
+            else//not a valid word
+                errorMessage(3);
+        }
     }
 
     public void errorMessage(int code)
@@ -280,27 +330,25 @@ public class SixthActivity extends AppCompatActivity {
         switch(code) {
             case 1:
                 err = "Word already played! Enter another one";
-                counter--;
                 flag = true;
                 break;
             case 2:
                 err = "The word must start with the last letter of the previous word";
-                counter--;
                 flag = true;
                 break;
             case 3:
                 err = "The word does not belong in the dictionary";
-                counter--;
                 flag = true;
                 break;
             case 4:
                 err = "Time's up!\nYour turn has passed";
-                counter--;
                 dispTimerMessage(err);
                 break;
-            //default: err="You get "+ pt+" points";
+            case 5:
+                err="The word must start with the letter W";
+                flag=true;
         }
-        if(flag)
+        //if(flag)
             Toast.makeText(getApplicationContext(), err,Toast.LENGTH_SHORT ).show();
 
     }
@@ -309,7 +357,6 @@ public class SixthActivity extends AppCompatActivity {
         @Override
         public void onClick(View v)
         {
-            counter++;
             String w=e.getText().toString();//get word
             processWord(w);
             if(err_flag)
@@ -372,48 +419,64 @@ public class SixthActivity extends AppCompatActivity {
     }
     public void firstWord()
     {
-        Random r=new Random();
-        int letter=r.nextInt(26);
         String first_word="";
-        switch (letter)
+        if(level==3)
         {
-            case 0: first_word=A_Letter.get(0); break;
-            case 1: first_word=B_Letter.get(0); break;
-            case 2: first_word=C_Letter.get(0); break;
-            case 3: first_word=D_Letter.get(0); break;
-            case 4: first_word=E_Letter.get(0); break;
-            case 5: first_word=F_Letter.get(0); break;
-            case 6: first_word=G_Letter.get(0); break;
-            case 7: first_word=H_Letter.get(0); break;
-            case 8: first_word=I_Letter.get(0); break;
-            case 9: first_word=J_Letter.get(0); break;
-            case 10: first_word=K_Letter.get(0); break;
-            case 11: first_word=L_Letter.get(0); break;
-            case 12: first_word=M_Letter.get(0); break;
-            case 13: first_word=N_Letter.get(0); break;
-            case 14: first_word=O_Letter.get(0); break;
-            case 15: first_word=P_Letter.get(0); break;
-            case 16: first_word=Q_Letter.get(0); break;
-            case 17: first_word=R_Letter.get(0); break;
-            case 18: first_word=S_Letter.get(0); break;
-            case 19: first_word=T_Letter.get(0); break;
-            case 20: first_word=U_Letter.get(0); break;
-            case 21: first_word=V_Letter.get(0); break;
-            case 22: first_word=W_Letter.get(0); break;
-            case 23: first_word=X_Letter.get(0); break;
-            case 24: first_word=Y_Letter.get(0); break;
-            case 25: first_word=Z_Letter.get(0); break;
-        }//end of switch
+            first_word=W_Letter.get(0);
+        }
+        else if(level==1)
+        {
+            Random r=new Random();
+            int letter=r.nextInt(26);
+            switch (letter)
+            {
+                case 0: first_word=A_Letter.get(0); break;
+                case 1: first_word=B_Letter.get(0); break;
+                case 2: first_word=C_Letter.get(0); break;
+                case 3: first_word=D_Letter.get(0); break;
+                case 4: first_word=E_Letter.get(0); break;
+                case 5: first_word=F_Letter.get(0); break;
+                case 6: first_word=G_Letter.get(0); break;
+                case 7: first_word=H_Letter.get(0); break;
+                case 8: first_word=I_Letter.get(0); break;
+                case 9: first_word=J_Letter.get(0); break;
+                case 10: first_word=K_Letter.get(0); break;
+                case 11: first_word=L_Letter.get(0); break;
+                case 12: first_word=M_Letter.get(0); break;
+                case 13: first_word=N_Letter.get(0); break;
+                case 14: first_word=O_Letter.get(0); break;
+                case 15: first_word=P_Letter.get(0); break;
+                case 16: first_word=Q_Letter.get(0); break;
+                case 17: first_word=R_Letter.get(0); break;
+                case 18: first_word=S_Letter.get(0); break;
+                case 19: first_word=T_Letter.get(0); break;
+                case 20: first_word=U_Letter.get(0); break;
+                case 21: first_word=V_Letter.get(0); break;
+                case 22: first_word=W_Letter.get(0); break;
+                case 23: first_word=X_Letter.get(0); break;
+                case 24: first_word=Y_Letter.get(0); break;
+                case 25: first_word=Z_Letter.get(0); break;
+            }//end of switch
+        }
+
         used_words.add(first_word);
         points[1]+=first_word.length();
         updateTextView(first_word);
+
     }
 
 
     public void computerWord()
     {
 
-            int list_size, prev_length, index;
+        if(level==3)
+        {
+            c_word=W_Letter.get(w);
+            used_words.add(c_word);
+            w++;
+        }
+        else if(level==1)
+        {    int list_size, prev_length, index;
             String prev="";
             list_size = used_words.size();
             //index = used_words.indexOf(word);
@@ -449,43 +512,53 @@ public class SixthActivity extends AppCompatActivity {
                 case 'Y': c_word=Y_Letter.get(y); y++; used_words.add(c_word); break;
                 case 'Z': c_word=Z_Letter.get(z); z++; used_words.add(c_word); break;
             }
+        }
         points[1]+=c_word.length();
         pts2=points[1]+ " POINTS";
+
     }
 
 
 
     public void removeUserPlayedWord(String w)
     {
-        char start=w.charAt(0);
-        switch (start)
+        if (level==3)
         {
-            case 'A': A_Letter.remove(w); break;
-            case 'B': B_Letter.remove(w); break;
-            case 'C': C_Letter.remove(w); break;
-            case 'D': D_Letter.remove(w); break;
-            case 'E': E_Letter.remove(w); break;
-            case 'F': F_Letter.remove(w); break;
-            case 'G': G_Letter.remove(w); break;
-            case 'H': H_Letter.remove(w); break;
-            case 'I': I_Letter.remove(w); break;
-            case 'J': J_Letter.remove(w); break;
-            case 'K': K_Letter.remove(w); break;
-            case 'L': L_Letter.remove(w); break;
-            case 'M': M_Letter.remove(w); break;
-            case 'N': N_Letter.remove(w); break;
-            case 'O': O_Letter.remove(w); break;
-            case 'P': P_Letter.remove(w); break;
-            case 'Q': Q_Letter.remove(w); break;
-            case 'R': R_Letter.remove(w); break;
-            case 'S': S_Letter.remove(w); break;
-            case 'T': T_Letter.remove(w); break;
-            case 'U': U_Letter.remove(w); break;
-            case 'V': V_Letter.remove(w); break;
-            case 'W': W_Letter.remove(w); break;
-            case 'X': X_Letter.remove(w); break;
-            case 'Y': Y_Letter.remove(w); break;
-            case 'Z': Z_Letter.remove(w); break;
+            W_Letter.remove(w);
+        }
+
+        else if(level==1)
+        {
+            char start = w.charAt(0);
+            switch (start)
+            {
+                case 'A': A_Letter.remove(w); break;
+                case 'B': B_Letter.remove(w); break;
+                case 'C': C_Letter.remove(w); break;
+                case 'D': D_Letter.remove(w); break;
+                case 'E': E_Letter.remove(w); break;
+                case 'F': F_Letter.remove(w); break;
+                case 'G': G_Letter.remove(w); break;
+                case 'H': H_Letter.remove(w); break;
+                case 'I': I_Letter.remove(w); break;
+                case 'J': J_Letter.remove(w); break;
+                case 'K': K_Letter.remove(w); break;
+                case 'L': L_Letter.remove(w); break;
+                case 'M': M_Letter.remove(w); break;
+                case 'N': N_Letter.remove(w); break;
+                case 'O': O_Letter.remove(w); break;
+                case 'P': P_Letter.remove(w); break;
+                case 'Q': Q_Letter.remove(w); break;
+                case 'R': R_Letter.remove(w); break;
+                case 'S': S_Letter.remove(w); break;
+                case 'T': T_Letter.remove(w); break;
+                case 'U': U_Letter.remove(w); break;
+                case 'V': V_Letter.remove(w); break;
+                case 'W': W_Letter.remove(w); break;
+                case 'X': X_Letter.remove(w); break;
+                case 'Y': Y_Letter.remove(w); break;
+                case 'Z': Z_Letter.remove(w); break;
+            }
         }
     }
     }

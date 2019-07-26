@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void goToFifthActivity()
     {
-        Intent intent = new Intent(this, SixthActivity.class);
+        Intent intent = new Intent(this, FifthActivity.class);
         startActivity(intent);
 
     }
