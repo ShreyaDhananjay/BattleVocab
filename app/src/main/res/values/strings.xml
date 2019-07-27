@@ -21,7 +21,7 @@
     <string name="go">GO!</string>
     <string name="_0_points">0 POINTS</string>
     <string name="app_level">THE BASE LEVEL</string>
-    <string name="app_level1">MODERATE</string>
+    <string name="app_level1">THE DIFFICULT LEVEL</string>
     <string name="app_level2">WORDS WITH \'W\'</string>
     <string name="player">Player</string>
     <string name="computer">Computer</string>

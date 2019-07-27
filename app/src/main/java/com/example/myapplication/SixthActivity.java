@@ -164,14 +164,81 @@ public class SixthActivity extends AppCompatActivity {
                 }
                 System.out.println(java.util.Collections.binarySearch(word_list1, "HOUSE"));
             }
+            else if(level==2)
+            {
+                while((line=br.readLine())!=null)
+                {
+                    String word=line.trim();
+                    word_list1.add(word);
+                    if(word.length()<=6)
+                    {
 
-        }
+                        if(line.startsWith("A"))
+                            A_Letter.add(line);
+                        else if(line.startsWith("B"))
+                            B_Letter.add(line);
+                        else if (line.startsWith("C"))
+                            C_Letter.add(line);
+                        else if (line.startsWith("D"))
+                            D_Letter.add(line);
+                        else if (line.startsWith("E"))
+                            E_Letter.add(line);
+                        else if (line.startsWith("F"))
+                            F_Letter.add(line);
+                        else if (line.startsWith("G"))
+                            G_Letter.add(line);
+                        else if (line.startsWith("H"))
+                            H_Letter.add(line);
+                        else if (line.startsWith("I"))
+                            I_Letter.add(line);
+                        else if (line.startsWith("J"))
+                            J_Letter.add(line);
+                        else if (line.startsWith("K"))
+                            K_Letter.add(line);
+                        else if (line.startsWith("L"))
+                            L_Letter.add(line);
+                        else if (line.startsWith("M"))
+                            M_Letter.add(line);
+                        else if (line.startsWith("N"))
+                            N_Letter.add(line);
+                        else if (line.startsWith("O"))
+                            O_Letter.add(line);
+                        else if (line.startsWith("P"))
+                            P_Letter.add(line);
+                        else if (line.startsWith("Q"))
+                            Q_Letter.add(line);
+                        else if (line.startsWith("R"))
+                            R_Letter.add(line);
+                        else if (line.startsWith("S"))
+                            S_Letter.add(line);
+                        else if (line.startsWith("T"))
+                            T_Letter.add(line);
+                        else if (line.startsWith("U"))
+                            U_Letter.add(line);
+                        else if (line.startsWith("V"))
+                            V_Letter.add(line);
+                        else if (line.startsWith("W"))
+                            W_Letter.add(line);
+                        else if (line.startsWith("X"))
+                            X_Letter.add(line);
+                        else if (line.startsWith("Y"))
+                            Y_Letter.add(line);
+                        else if (line.startsWith("Z"))
+                            Z_Letter.add(line);
+
+                    }//end of if
+                }//end of while
+
+
+            }//end of level 2 condition
+
+        }//end of try
 
         catch (IOException e) {
             e.printStackTrace();
             System.out.println("ERROR LOADING DICTIONARY");
         }
-        if(level==1) {
+        if(level==1 || level==2) {
             Collections.shuffle(A_Letter);
 
             Collections.shuffle(B_Letter);
@@ -287,7 +354,7 @@ public class SixthActivity extends AppCompatActivity {
             else//doesnt start w/ W
             errorMessage(5);
         }
-        else if(level==1)
+        else if(level==1 || level==2)
         {
             if(contain(word))
             {
@@ -308,17 +375,13 @@ public class SixthActivity extends AppCompatActivity {
                         //stop();
 
                     }
-
                     else//word starts w/ correct letter but has already been entered
                         errorMessage(1);
                 }
-
                 else//word starts w/ wrong letter
                     errorMessage(2);
 
-
             }//end of outermost if
-
             else//not a valid word
                 errorMessage(3);
         }
@@ -364,17 +427,25 @@ public class SixthActivity extends AppCompatActivity {
                 t13.setText(pts1);
                 //timerClass.stop(context);
             }
+            if(level==1 || level==3)
+                result=winner.checkWinner(points[0], 50, 1);
+            else if(level==2)
+                result=winner.checkWinner(points[0], 60, 1);
 
-            result=winner.checkWinner(points[0], 50, 1);
             if(result==1) goToLastScreen();
             e.setText("");
-            //e.getText().clear();
+
             if(result!=1 && !flag)
             {
                 computerWord();
                 t15.setText(c_word);
                 t14.setText(pts2);
-                result = winner.checkWinner(points[1], 50, 2);
+
+                if(level==1 || level==3)
+                    result = winner.checkWinner(points[1], 50, 2);
+                else if(level==2)
+                    result = winner.checkWinner(points[1], 45, 2);
+
                 if (result == 2) goToLastScreen();
             }
             else
@@ -424,7 +495,7 @@ public class SixthActivity extends AppCompatActivity {
         {
             first_word=W_Letter.get(0);
         }
-        else if(level==1)
+        else if(level==1 || level==2)
         {
             Random r=new Random();
             int letter=r.nextInt(26);
@@ -475,7 +546,8 @@ public class SixthActivity extends AppCompatActivity {
             used_words.add(c_word);
             w++;
         }
-        else if(level==1)
+
+        else if(level==1 || level==2)
         {    int list_size, prev_length, index;
             String prev="";
             list_size = used_words.size();
@@ -527,37 +599,40 @@ public class SixthActivity extends AppCompatActivity {
             W_Letter.remove(w);
         }
 
-        else if(level==1)
+        else if(level==1 || level==2)
         {
             char start = w.charAt(0);
-            switch (start)
+            if((!(w.length()>6) && level==2) || level==1)
             {
-                case 'A': A_Letter.remove(w); break;
-                case 'B': B_Letter.remove(w); break;
-                case 'C': C_Letter.remove(w); break;
-                case 'D': D_Letter.remove(w); break;
-                case 'E': E_Letter.remove(w); break;
-                case 'F': F_Letter.remove(w); break;
-                case 'G': G_Letter.remove(w); break;
-                case 'H': H_Letter.remove(w); break;
-                case 'I': I_Letter.remove(w); break;
-                case 'J': J_Letter.remove(w); break;
-                case 'K': K_Letter.remove(w); break;
-                case 'L': L_Letter.remove(w); break;
-                case 'M': M_Letter.remove(w); break;
-                case 'N': N_Letter.remove(w); break;
-                case 'O': O_Letter.remove(w); break;
-                case 'P': P_Letter.remove(w); break;
-                case 'Q': Q_Letter.remove(w); break;
-                case 'R': R_Letter.remove(w); break;
-                case 'S': S_Letter.remove(w); break;
-                case 'T': T_Letter.remove(w); break;
-                case 'U': U_Letter.remove(w); break;
-                case 'V': V_Letter.remove(w); break;
-                case 'W': W_Letter.remove(w); break;
-                case 'X': X_Letter.remove(w); break;
-                case 'Y': Y_Letter.remove(w); break;
-                case 'Z': Z_Letter.remove(w); break;
+                switch (start)
+                {
+                    case 'A': A_Letter.remove(w); break;
+                    case 'B': B_Letter.remove(w); break;
+                    case 'C': C_Letter.remove(w); break;
+                    case 'D': D_Letter.remove(w); break;
+                    case 'E': E_Letter.remove(w); break;
+                    case 'F': F_Letter.remove(w); break;
+                    case 'G': G_Letter.remove(w); break;
+                    case 'H': H_Letter.remove(w); break;
+                    case 'I': I_Letter.remove(w); break;
+                    case 'J': J_Letter.remove(w); break;
+                    case 'K': K_Letter.remove(w); break;
+                    case 'L': L_Letter.remove(w); break;
+                    case 'M': M_Letter.remove(w); break;
+                    case 'N': N_Letter.remove(w); break;
+                    case 'O': O_Letter.remove(w); break;
+                    case 'P': P_Letter.remove(w); break;
+                    case 'Q': Q_Letter.remove(w); break;
+                    case 'R': R_Letter.remove(w); break;
+                    case 'S': S_Letter.remove(w); break;
+                    case 'T': T_Letter.remove(w); break;
+                    case 'U': U_Letter.remove(w); break;
+                    case 'V': V_Letter.remove(w); break;
+                    case 'W': W_Letter.remove(w); break;
+                    case 'X': X_Letter.remove(w); break;
+                    case 'Y': Y_Letter.remove(w); break;
+                    case 'Z': Z_Letter.remove(w); break;
+                }
             }
         }
     }
