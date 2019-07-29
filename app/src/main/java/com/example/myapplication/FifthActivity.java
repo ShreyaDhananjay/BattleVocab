@@ -3,8 +3,10 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class FifthActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -36,13 +38,23 @@ public class FifthActivity extends AppCompatActivity implements View.OnClickList
         {
             level=2;
             l='2';
+            String disp="You need 60 points to win, the computer only needs 45!";
+            Toast toast=Toast.makeText(getApplicationContext(), disp, Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
             goToSixthActivity();
+
         }
         else
         {
             level=3;
             l='3';
+            String disp="All words must start with the letter \'W\'";
+            Toast toast=Toast.makeText(getApplicationContext(), disp, Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
             goToSixthActivity();
+
         }
 
 

@@ -28,9 +28,16 @@
     <string name="ins">Instructions</string>
     <string name="you">You</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="instruc">This word game can be played in two modes, Single Player and Pass and Play. The basic objective of the game is to make words with the last letter of the previously played word. Words may not be repeated in any mode.
+    <string name="instruc">This word game can be played in two modes, Single Player and Pass and Play.
+        The basic objective of the game is to make words with the last letter of the previously played word.
+        Words may not be repeated in any mode.
         The number of points allotted for a word is equal to the number of letters in the word.
-        \n\nIn the pass and play mode, the players may choose how many points they will play up to (50 is optimum). Player 1 must make the first word with the random letter displayed before the game begins and subsequent words with the last letter of the previous word. Whichever player reaches or crosses the maximum first is declared as the winner.
-\n\nIn the single player mode the player plays against the computer. The computer plays the first word, and the player must make their first word with the last letter of the word played by the computer, and the game continues. Whoever reaches or crosses 50 points first is declared as the winner.
+        \n\nIn the pass and play mode, the players may choose how many points they will play up to (50 is default).
+        Player 1 must make the first word with the random letter displayed before the game begins and
+        subsequent words with the last letter of the previous word. Whichever player reaches or crosses the maximum first
+        is declared as the winner.
+        \n\nThe single player mode consists of multiple levels. In the basic and difficult levels the computer plays the first word,
+        and the player must make their first word with the last letter of the word played by the computer, and the game continues.
+        Rules may vary based on the level.
 </string>
 </resources>

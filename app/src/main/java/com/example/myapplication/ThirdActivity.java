@@ -53,7 +53,7 @@ public class ThirdActivity extends AppCompatActivity {
 
        // sa=new SecondActivity();
         win=new Winner();
-
+        count[0]=1;
 
     }
 
@@ -144,8 +144,6 @@ public class ThirdActivity extends AppCompatActivity {
 
                         if(count[0]==1)
                         {
-                            //disp=s1+" gets "+String.valueOf(s.length())+ " points";
-                            //noError(disp);
                             points[0]+=s.length();
                             error_flag=false;
                             //stopTimer(flag);
@@ -153,8 +151,6 @@ public class ThirdActivity extends AppCompatActivity {
 
                         else
                          {
-                             //disp=s2+" gets "+String.valueOf(s.length())+ " points";
-                             //noError(disp);
                              points[1]+=s.length();
                              error_flag=false;
                              //stopTimer(flag);
@@ -176,19 +172,15 @@ public class ThirdActivity extends AppCompatActivity {
                 {
                     System.out.println("first time");
                     list.add(s);
-
+                    flag=true;
                     if (count[0] == 1)
                     {
-                        //disp = s1 + " gets " + String.valueOf(s.length()) + " points";
-                        //noError(disp);
                         points[0] += s.length();
                         error_flag=false;
                         //stopTimer(true);
                     }
                     else if (count[0] == 2)
                     {
-                        //disp = s2 + " gets " + String.valueOf(s.length()) + " points";
-                        //noError(disp);
                         points[1] += s.length();
                         error_flag=false;
                         //stopTimer(true);
@@ -197,7 +189,6 @@ public class ThirdActivity extends AppCompatActivity {
 
                 else//first word starts w/ wrong letter
                     errorMessage(2);
-
             }
 
         }//end of outermost if
@@ -223,19 +214,19 @@ public class ThirdActivity extends AppCompatActivity {
             case 1:
                 err = "Word already played! Enter another one";
                 counter--;
-                flag = true;
+                //flag = true;
                 error_flag=true;
                 break;
             case 2:
                 err = "The word must start with the last letter of the previous word";
                 counter--;
-                flag = true;
+                //flag = true;
                 error_flag=true;
                 break;
             case 3:
                 err = "The word does not belong in the dictionary";
                 counter--;
-                flag = true;
+                //flag = true;
                 error_flag=true;
                 break;
             case 4:
@@ -245,7 +236,7 @@ public class ThirdActivity extends AppCompatActivity {
                 break;
             //default: err="You get "+ pt+" points";
         }
-        if(flag)
+        //if(flag)
             Toast.makeText(getApplicationContext(), err,Toast.LENGTH_SHORT ).show();
 
     }
@@ -260,29 +251,32 @@ public class ThirdActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            t1.setText(s1);
-            String w, dispmsg1;
-            count[0] = 1;
-            counter++;
-            w = word1.getText().toString();
-            System.out.println(w);
-            processWord(w);
-            word2.setText("");
-            dispmsg1 = points[0] +" POINTS";
-            t3.setText(dispmsg1);
-            if(!error_flag)
-            {
-                word2.requestFocus();
-                //stop();
-            }
-            //fetch name of winner
-            res = win.checkWinner(points[0], maxpts, 1);
+            if(count[0]==1) {
+                t1.setText(s1);
+                String w, dispmsg1;
+                //count[0] = 1;
+                counter++;
+                w = word1.getText().toString();
+                System.out.println(w);
+                processWord(w);
+                word2.setText("");
+                dispmsg1 = points[0] + " POINTS";
+                t3.setText(dispmsg1);
+                if (!error_flag) {
+                    word2.requestFocus();
+                    //stop();
+                }
+                //fetch name of winner
+                res = win.checkWinner(points[0], maxpts, 1);
 
-            //if person has won
-            if (res == 1 || res == 2) {
-                //stopTimer(true);
-                goToFourthActivity();
-            }
+                //if person has won
+                if (res == 1 || res == 2) {
+                    //stopTimer(true);
+                    goToFourthActivity();
+                }
+            }//end of if
+            else
+                Toast.makeText(getApplicationContext(), "NOT YOUR TURN", Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -291,29 +285,31 @@ public class ThirdActivity extends AppCompatActivity {
         @Override
         public void onClick(View v)
         {
-            t2.setText(s2);
-            String w, dispmsg2;
-            count[0] = 2;
-            counter++;
-            w = word2.getText().toString();
-            processWord(w);
-            word1.setText("");
-            dispmsg2=points[1]+" POINTS";
-            t4.setText(dispmsg2);
-            if(!error_flag)
-            {
-                word1.requestFocus();
-                //stop();
-            }
-            //fetch name of winner
-            res=win.checkWinner(points[1], maxpts, 2);
+           if(count[0]==2) {
+               t2.setText(s2);
+               String w, dispmsg2;
+               //count[0] = 2;
+               counter++;
+               w = word2.getText().toString();
+               processWord(w);
+               word1.setText("");
+               dispmsg2 = points[1] + " POINTS";
+               t4.setText(dispmsg2);
+               if (!error_flag) {
+                   word1.requestFocus();
+                   //stop();
+               }
+               //fetch name of winner
+               res = win.checkWinner(points[1], maxpts, 2);
 
-            //if person has won
-            if(res==1 || res==2)
-            {
-                //stopFully();
-                goToFourthActivity();
-            }
+               //if person has won
+               if (res == 1 || res == 2) {
+                   //stopFully();
+                   goToFourthActivity();
+               }
+           }//end of if
+           else
+            Toast.makeText(getApplicationContext(), "NOT YOUR TURN", Toast.LENGTH_SHORT).show();
         }
     };
 

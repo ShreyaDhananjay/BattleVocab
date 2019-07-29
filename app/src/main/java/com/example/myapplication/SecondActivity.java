@@ -69,13 +69,29 @@ public class SecondActivity extends AppCompatActivity {
         {
 
             s[0]=e1.getText().toString();//player 1 name
+            if(s[0].length()==0)
+                s[0]="Player 1";
             s[1]=e2.getText().toString();//player 2 name
+            if(s[1].length()==0)
+                s[1]="Player 2";
             s[2]=e3.getText().toString();
             if(!s[2].equals(""))
+            {
                 pts=Integer.parseInt(s[2]);//max points
+                if(pts<=0)
+                {
+                    pts=50;//default points
+                    s[2]= String.valueOf(50);
+                }
+            }
+            else
+            {
+                pts=50;
+                s[2]= String.valueOf(50);
+            }
 
 
-            final String disp=s[0]+" will start the game. Make the first word with the letter ' "+c+" '\nYour time starts now! Max pts is "+pts;
+            final String disp=s[0]+" will start the game. Make the first word with the letter ' "+c+" '\nMax points is "+pts;
 
             Toast toast=Toast.makeText(getApplicationContext(), disp, Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 0);
