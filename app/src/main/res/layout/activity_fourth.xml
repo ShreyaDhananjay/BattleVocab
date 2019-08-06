@@ -33,7 +33,7 @@
         android:layout_marginBottom="61dp"
         android:text="@string/winner"
         android:textAlignment="center"
-        android:textSize="50sp"
+        android:textSize="30sp"
         app:fontFamily="@font/fredoka_one"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
