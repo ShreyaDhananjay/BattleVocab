@@ -58,7 +58,7 @@ public class SixthActivity extends AppCompatActivity {
     TextView t13, t14, t15;
     EditText e;
     Button b11;
-    int counter=0, result=0, seconds_passed=0, turn=0;
+    int result=0;
     int a=1, b=1, c=1, d=1, e1=1, f=1, g=1, h=1, i=1, j=1, k=1, l=1, m=1, n=1, o=1, p=1, q=1, r1=1, s=1, t=1, u=1, v=1, w=1, x=1, y=1, z=1;
     int [] points=new int[2];
     int level=0;
@@ -162,7 +162,6 @@ public class SixthActivity extends AppCompatActivity {
                         Z_Letter.add(line);
 
                 }
-                System.out.println(java.util.Collections.binarySearch(word_list1, "HOUSE"));
             }
             else if(level==2)
             {
@@ -272,53 +271,8 @@ public class SixthActivity extends AppCompatActivity {
         b11.setOnClickListener(vocl);
         firstWord();//first computer generated word
 
-       // start();
     }//end of onCreate()
 
-    /*Timer timer = new Timer();
-    TimerTask task = new TimerTask() {
-        public void run() {
-            seconds_passed++;
-            if (seconds_passed == 5)
-            {
-                errorMessage(4);
-                System.out.println("Time's up!");
-                //computerWord();
-                stop();
-            }
-        }
-    };
-
-
-    public void start()
-    {
-        seconds_passed = 0;
-        timer.scheduleAtFixedRate(task, 1000, 1000);
-    }
-
-
-    public void stop()
-    {
-        task.cancel();
-
-        seconds_passed=0;
-    }*/
-
-    private void dispTimerMessage(final String msg){
-        SixthActivity.this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast toast=Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER| Gravity.CENTER_HORIZONTAL, 0,0);
-                toast.show();
-                computerWord();
-                t15.setText(c_word);
-                t14.setText(pts2);
-                seconds_passed=0;
-                //start();
-            }
-        });
-    }
     public boolean contain(String word)
     {
         return (java.util.Collections.binarySearch(word_list1, word) >= 0);
@@ -343,7 +297,6 @@ public class SixthActivity extends AppCompatActivity {
                         pts1=points[0]+ " POINTS";
                         removeUserPlayedWord(word);
                         err_flag=true;
-
                     }
                     else//word has been played
                         errorMessage(1);
@@ -372,8 +325,6 @@ public class SixthActivity extends AppCompatActivity {
                         pts1=points[0]+ " POINTS";
                         removeUserPlayedWord(word);
                         err_flag=true;
-                        //stop();
-
                     }
                     else//word starts w/ correct letter but has already been entered
                         errorMessage(1);
@@ -403,15 +354,11 @@ public class SixthActivity extends AppCompatActivity {
                 err = "The word does not belong in the dictionary";
                 flag = true;
                 break;
-            case 4:
-                err = "Time's up!\nYour turn has passed";
-                dispTimerMessage(err);
-                break;
             case 5:
                 err="The word must start with the letter W";
                 flag=true;
         }
-        //if(flag)
+        if(flag)
             Toast.makeText(getApplicationContext(), err,Toast.LENGTH_SHORT ).show();
 
     }
@@ -425,7 +372,6 @@ public class SixthActivity extends AppCompatActivity {
             if(err_flag)
             {
                 t13.setText(pts1);
-                //timerClass.stop(context);
             }
             if(level==1 || level==3)
                 result=winner.checkWinner(points[0], 50, 1);
@@ -536,7 +482,6 @@ public class SixthActivity extends AppCompatActivity {
 
     }
 
-
     public void computerWord()
     {
 
@@ -548,7 +493,8 @@ public class SixthActivity extends AppCompatActivity {
         }
 
         else if(level==1 || level==2)
-        {    int list_size, prev_length, index;
+        {
+            int list_size, prev_length, index;
             String prev="";
             list_size = used_words.size();
             //index = used_words.indexOf(word);
@@ -589,8 +535,6 @@ public class SixthActivity extends AppCompatActivity {
         pts2=points[1]+ " POINTS";
 
     }
-
-
 
     public void removeUserPlayedWord(String w)
     {

@@ -32,6 +32,10 @@ public class FifthActivity extends AppCompatActivity implements View.OnClickList
         {
             level=1;
             l='1';
+            String disp="Whoever reaches 50 points first, wins!";
+            Toast toast=Toast.makeText(getApplicationContext(), disp, Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
             goToSixthActivity();
         }
         else if (v==b9)

@@ -38,7 +38,7 @@ public class ThirdActivity extends AppCompatActivity {
     private Button b1, b2;
     public ArrayList<String> word_list=new ArrayList<String>();
     public ArrayList <String> list=new ArrayList<String>();
-    int res, maxpts=50, counter=0, secondspassed;
+    int res, maxpts=50, counter=0;
     int [] points=new int[2];
     public int [] count=new int[1];//so it's a reference variable that automatically gets updated
     char c;
@@ -47,17 +47,11 @@ public class ThirdActivity extends AppCompatActivity {
     String []data=new String[3];
     Winner win;
 
-
-
     public ThirdActivity() throws IOException {
 
-       // sa=new SecondActivity();
         win=new Winner();
         count[0]=1;
-
     }
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -89,8 +83,6 @@ public class ThirdActivity extends AppCompatActivity {
         AssetManager assetManager=getAssets();
         try
         {
-            //Context context=this;
-           // d.readWordList(assetManager);
             InputStream inputStream=assetManager.open("wordlist3.txt");
             BufferedReader br=new BufferedReader(new InputStreamReader(inputStream));
             String line;
@@ -99,24 +91,19 @@ public class ThirdActivity extends AppCompatActivity {
                 String word=line.trim();
                 word_list.add(word);
             }
-            System.out.println(java.util.Collections.binarySearch(word_list, "HOUSE"));
         }
 
         catch (IOException e) {
             e.printStackTrace();
             System.out.println("ERROR LOADING DICTIONARY");
         }
-        //start();//start timer
-
 
     }//end of onCreate
 
     public boolean contain(String word)
     {
         return (java.util.Collections.binarySearch(word_list, word) >= 0);
-        //return wordsSet.contains(word);
     }
-
 
     public void processWord(String w)
     {
@@ -128,7 +115,6 @@ public class ThirdActivity extends AppCompatActivity {
         {
             if(counter>1)//not the first time
             {
-                //System.out.println(counter);
                 list_size = list.size();
                 index = list.indexOf(s);
                 prev = list.get(list_size - 1);
@@ -146,14 +132,12 @@ public class ThirdActivity extends AppCompatActivity {
                         {
                             points[0]+=s.length();
                             error_flag=false;
-                            //stopTimer(flag);
                         }
 
                         else
                          {
                              points[1]+=s.length();
                              error_flag=false;
-                             //stopTimer(flag);
                          }
                     }
 
@@ -164,13 +148,11 @@ public class ThirdActivity extends AppCompatActivity {
                 else//word starts w/ wrong letter
                     errorMessage(2);
             }//end of second most outer if
-           // System.out.println("YAY");
 
             else//first word that's been played
             {
                 if (s.charAt(0) == c)
                 {
-                    System.out.println("first time");
                     list.add(s);
                     flag=true;
                     if (count[0] == 1)
@@ -198,7 +180,6 @@ public class ThirdActivity extends AppCompatActivity {
 
         if(flag)
         {
-            //stopTimer(flag);
             if(count[0]==1)
                 count[0]++;
             else
@@ -206,46 +187,30 @@ public class ThirdActivity extends AppCompatActivity {
         }
 
     }//end of processWord
+
     public void errorMessage(int code)
     {
         String err="";
-        boolean flag=false;
         switch(code) {
             case 1:
                 err = "Word already played! Enter another one";
                 counter--;
-                //flag = true;
                 error_flag=true;
                 break;
             case 2:
                 err = "The word must start with the last letter of the previous word";
                 counter--;
-                //flag = true;
                 error_flag=true;
                 break;
             case 3:
                 err = "The word does not belong in the dictionary";
                 counter--;
-                //flag = true;
                 error_flag=true;
                 break;
-            case 4:
-                err = "Time's up!\nYour turn has passed";
-                counter--;
-                //dispTimerMessage(err);
-                break;
-            //default: err="You get "+ pt+" points";
         }
-        //if(flag)
-            Toast.makeText(getApplicationContext(), err,Toast.LENGTH_SHORT ).show();
+        Toast.makeText(getApplicationContext(), err,Toast.LENGTH_SHORT ).show();
 
     }
-/*
-    public void stopTimer(boolean flag)
-    {
-        if(flag)
-            stop();//stop timer
-    }*/
 
     private View.OnClickListener vocl1 = new View.OnClickListener() {
 
@@ -254,7 +219,6 @@ public class ThirdActivity extends AppCompatActivity {
             if(count[0]==1) {
                 t1.setText(s1);
                 String w, dispmsg1;
-                //count[0] = 1;
                 counter++;
                 w = word1.getText().toString();
                 System.out.println(w);
@@ -264,7 +228,6 @@ public class ThirdActivity extends AppCompatActivity {
                 t3.setText(dispmsg1);
                 if (!error_flag) {
                     word2.requestFocus();
-                    //stop();
                 }
                 //fetch name of winner
                 res = win.checkWinner(points[0], maxpts, 1);
@@ -288,7 +251,6 @@ public class ThirdActivity extends AppCompatActivity {
            if(count[0]==2) {
                t2.setText(s2);
                String w, dispmsg2;
-               //count[0] = 2;
                counter++;
                w = word2.getText().toString();
                processWord(w);
@@ -297,14 +259,12 @@ public class ThirdActivity extends AppCompatActivity {
                t4.setText(dispmsg2);
                if (!error_flag) {
                    word1.requestFocus();
-                   //stop();
                }
                //fetch name of winner
                res = win.checkWinner(points[1], maxpts, 2);
 
                //if person has won
                if (res == 1 || res == 2) {
-                   //stopFully();
                    goToFourthActivity();
                }
            }//end of if
@@ -335,69 +295,6 @@ public class ThirdActivity extends AppCompatActivity {
         toast.show();
 
     }
-/*
-
-    Timer timer = new Timer();
-    TimerTask task = new TimerTask() {
-        public void run() {
-            secondspassed++;
-            if (secondspassed == 5)
-            {
-                errorMessage(4);
-                System.out.println("Time's up!");
-                cancel();
-                //start();
-            }
-        }
-    };
-
-
-    public void start()
-    {
-        secondspassed = 0;
-        timer.scheduleAtFixedRate(task, 1000, 1000);
-    }
-
-
-    public void stop()
-    {
-        timer.cancel();
-        timer=new Timer();
-        secondspassed=0;
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                secondspassed++;
-                if (secondspassed == 5) {
-                    ThirdActivity.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast toast = Toast.makeText(getApplicationContext(), "Time's Up", Toast.LENGTH_LONG);
-                            toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
-                            toast.show();
-                        }
-                    });
-                    stop();
-                }
-            }
-
-        }, 1000, 1000);
-    }
-    public void stopFully()
-    {
-        timer.cancel();
-    }
-
-    private void dispTimerMessage(final String msg){
-        ThirdActivity.this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast toast=Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER| Gravity.CENTER_HORIZONTAL, 0,0);
-                toast.show();
-            }
-        });
-    }*/
     private void updateTextView(final String s, final int code) {
         ThirdActivity.this.runOnUiThread(new Runnable() {
             @Override
