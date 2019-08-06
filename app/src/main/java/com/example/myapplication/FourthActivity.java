@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -43,6 +44,8 @@ public class FourthActivity extends AppCompatActivity implements OnClickListener
             msg=bundle.getString("message");
         set();
         //updateTextView();
+
+
     }
 
     @Override
