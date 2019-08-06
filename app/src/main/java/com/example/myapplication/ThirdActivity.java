@@ -159,13 +159,11 @@ public class ThirdActivity extends AppCompatActivity {
                     {
                         points[0] += s.length();
                         error_flag=false;
-                        //stopTimer(true);
                     }
                     else if (count[0] == 2)
                     {
                         points[1] += s.length();
                         error_flag=false;
-                        //stopTimer(true);
                     }
                 }
 
@@ -234,7 +232,6 @@ public class ThirdActivity extends AppCompatActivity {
 
                 //if person has won
                 if (res == 1 || res == 2) {
-                    //stopTimer(true);
                     goToFourthActivity();
                 }
             }//end of if
